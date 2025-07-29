@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Dongle_Linky_PIC</name>
-            <creation-uuid>08ed3e81-56e6-46d6-ba93-9f5fe83bac22</creation-uuid>
+            <name>Linky_Startup</name>
+            <creation-uuid>fac26e77-a72c-451f-8a6c-545af6c5a769</creation-uuid>
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>

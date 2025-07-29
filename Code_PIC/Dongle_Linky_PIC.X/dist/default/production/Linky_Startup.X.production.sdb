@@ -1,0 +1,179 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 12F1840 ]
+[d frameptr 6 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"39 C:\Users\Benoit Couraud\MPLABXProjects\Linky_Startup.X\main.c
+[v _ADC_Lecture ADC_Lecture `(ui  1 e 2 0 ]
+"49
+[v _delayWithWDT delayWithWDT `(v  1 e 1 0 ]
+"57
+[v _main main `(v  1 e 1 0 ]
+"352 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic12f1840.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"480
+[v _PIR1 PIR1 `VEuc  1 e 1 @17 ]
+"1003
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+[s S211 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+]
+"1018
+[u S218 . 1 `S211 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES218  1 e 1 @140 ]
+"1053
+[v _PIE1 PIE1 `VEuc  1 e 1 @145 ]
+[s S65 . 1 `uc 1 PS0 1 0 :1:0 
+`uc 1 PS1 1 0 :1:1 
+`uc 1 PS2 1 0 :1:2 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 TMR0SE 1 0 :1:4 
+`uc 1 TMR0CS 1 0 :1:5 
+`uc 1 INTEDG 1 0 :1:6 
+`uc 1 nWPUEN 1 0 :1:7 
+]
+"1178
+[s S74 . 1 `uc 1 PS 1 0 :3:0 
+`uc 1 . 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+]
+[u S79 . 1 `S65 1 . 1 0 `S74 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES79  1 e 1 @149 ]
+"1406
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+[s S101 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 IRCF0 1 0 :1:3 
+`uc 1 IRCF1 1 0 :1:4 
+`uc 1 IRCF2 1 0 :1:5 
+`uc 1 IRCF3 1 0 :1:6 
+`uc 1 SPLLEN 1 0 :1:7 
+]
+"1428
+[s S110 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 . 1 0 :1:2 
+`uc 1 IRCF 1 0 :4:3 
+]
+[u S114 . 1 `S101 1 . 1 0 `S110 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES114  1 e 1 @153 ]
+"1547
+[v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
+"1567
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+[s S22 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 CHS4 1 0 :1:6 
+]
+"1612
+[s S30 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 ADGO 1 0 :1:1 
+`uc 1 CHS 1 0 :5:2 
+]
+[s S34 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[u S37 . 1 `S22 1 . 1 0 `S30 1 . 1 0 `S34 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES37  1 e 1 @157 ]
+[s S153 . 1 `uc 1 ADPREF0 1 0 :1:0 
+`uc 1 ADPREF1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 ADCS0 1 0 :1:4 
+`uc 1 ADCS1 1 0 :1:5 
+`uc 1 ADCS2 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"1688
+[s S161 . 1 `uc 1 ADPREF 1 0 :2:0 
+`uc 1 . 1 0 :2:2 
+`uc 1 ADCS 1 0 :3:4 
+]
+[u S165 . 1 `S153 1 . 1 0 `S161 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES165  1 e 1 @158 ]
+"1733
+[v _LATA LATA `VEuc  1 e 1 @268 ]
+[s S228 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+]
+"1748
+[u S235 . 1 `S228 1 . 1 0 ]
+[v _LATAbits LATAbits `VES235  1 e 1 @268 ]
+[s S181 . 1 `uc 1 CCP1SEL 1 0 :1:0 
+`uc 1 P1BSEL 1 0 :1:1 
+`uc 1 TXCKSEL 1 0 :1:2 
+`uc 1 T1GSEL 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 SSSEL 1 0 :1:5 
+`uc 1 SDOSEL 1 0 :1:6 
+`uc 1 RXDTSEL 1 0 :1:7 
+]
+"2281
+[s S190 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 SS1SEL 1 0 :1:5 
+`uc 1 SDO1SEL 1 0 :1:6 
+]
+[u S194 . 1 `S181 1 . 1 0 `S190 1 . 1 0 ]
+[v _APFCONbits APFCONbits `VES194  1 e 1 @285 ]
+[s S133 . 1 `uc 1 ANSA0 1 0 :1:0 
+`uc 1 ANSA1 1 0 :1:1 
+`uc 1 ANSA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 ANSA4 1 0 :1:4 
+]
+"2413
+[s S139 . 1 `uc 1 ANSELA 1 0 :5:0 
+]
+[u S141 . 1 `S133 1 . 1 0 `S139 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES141  1 e 1 @396 ]
+"27 C:\Users\Benoit Couraud\MPLABXProjects\Linky_Startup.X\main.c
+[v _counter_ADC counter_ADC `ui  1 e 2 0 ]
+"28
+[v _counter_Reset counter_Reset `ui  1 e 2 0 ]
+"33
+[v _adc_char adc_char `uc  1 e 1 0 ]
+"34
+[v _last_adc last_adc `uc  1 e 1 0 ]
+"35
+[v _voltage_rised voltage_rised `uc  1 e 1 0 ]
+"36
+[v _currentState currentState `uc  1 e 1 0 ]
+"57
+[v _main main `(v  1 e 1 0 ]
+{
+"127
+} 0
+"49
+[v _delayWithWDT delayWithWDT `(v  1 e 1 0 ]
+{
+"50
+[v delayWithWDT@i i `ui  1 a 2 3 ]
+"49
+[v delayWithWDT@cycles cycles `ui  1 p 2 0 ]
+"54
+} 0
+"39
+[v _ADC_Lecture ADC_Lecture `(ui  1 e 2 0 ]
+{
+"46
+} 0

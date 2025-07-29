@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Dongle_Linky_PIC.X
+PROJECTNAME=Linky_Startup.X
 
 # Active Configuration
 DEFAULTCONF=default
