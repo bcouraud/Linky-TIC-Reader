@@ -1,0 +1,198 @@
+/*
+ * File:   main.c
+ * Author: Benoit Couraud
+ *
+ * Created on February 7, 2023, 3:28 PM
+ */
+
+
+#include <xc.h>
+
+
+// CONFIG1
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = ON       // Watchdog Timer Enable (WDT disabled)
+#pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
+#pragma config MCLRE = ON       // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
+#pragma config CP = OFF         // Flash Program Memory Code Protection (Program memory code protection is disabled)
+#pragma config CPD = OFF        // Data Memory Code Protection (Data memory code protection is disabled)
+#pragma config BOREN = ON       // Brown-out Reset Enable (Brown-out Reset enabled)
+#pragma config CLKOUTEN = OFF   // Clock Out Enable (CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin)
+#pragma config IESO = ON        // Internal/External Switchover (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor 
+
+// CONFIG2
+#pragma config WRT = OFF        // Flash Memory Self-Write Protection (Write protection off)
+#pragma config PLLEN = ON       // PLL Enable (4x PLL enabled)
+#pragma config STVREN = ON      // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will cause a Reset)
+#pragma config BORV = LO        // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), low trip point selected.)
+#pragma config LVP = OFF        // Low-Voltage Programming Enable (High-voltage on MCLR/VPP must be used for programming)
+
+#define _XTAL_FREQ 1000000     // Clock a 1MHz
+
+#include <xc.h>
+#include <math.h>
+
+unsigned char threshold1 = 180;
+unsigned char threshold2 = 187;
+char thresholdCounter = 20;//5; //20;
+char thresholdCounterAcquisition = 220;//10; //220;
+char counterAcquisition = 1;
+
+unsigned char adc_char;
+
+unsigned char ADC_Lecture()
+{
+  ADCON0bits.ADON = 1;// &= 0b00000001; //Clearing the Channel Selection Bits
+  //ADCON0 |= channel<<2; //Setting the required Bits
+  __delay_ms(6);
+  ADCON0bits.GO = 1; //Initializes A/D Conversion
+  while(ADCON0bits.GO_nDONE); //Wait for A/D Conversion to complete
+  //unsigned int output = (ADRESH<<8)+ADRESL;
+  return (ADRESH); //((ADRESH<<8)+ADRESL); //Returns Result
+}
+
+void variable_delay(int attente)
+{
+        int i;
+        for (i = 0; i < attente; i++)
+        {
+            __delay_ms(10);
+        } 
+}
+
+char counter;
+char uart_data;
+char acquisition = 0;
+void main(void) {
+    counter = 1;
+         //Configure Watchdog to approx 1 sec
+    CLRWDT();
+    OPTION_REGbits.PSA = 1; //prescaler is for wdt   
+    OPTION_REGbits.PS = 0b111; //prescaler 1:256
+    INTCON = 0; //disable every interrupt
+    PIE1=0;
+    PIR1=0;
+    INTCONbits.GIE = 0;
+    
+    
+    
+ // COnfiguration de l'oscillateur
+        OSCCON = 0b01011010;  //configuration clock 1MHz
+    OSCCONbits.SCS1 = 1;        // Selection de l'oscillateur interne (HF)
+   // OSCCONbits.IRCF = 0b1011;   // Oscillateur interne ? 1MHz
+    // Configuration des ports entr?e-sortie
+    TRISA = 0b00000001;          // PIN RA0 configur? en input, les autres en output
+    LATA = 0x00;                // Tous les PIN en ?tat bas
+    ANSELAbits.ANSA0=1;
+    ADCON1bits.ADCS=000;
+    ADCON1bits.ADPREF =00;
+    ADCON0bits.CHS =0000;
+    ADCON1bits.ADFM=0;
+ //#########################    mainloop   #####################################
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+// INIT UART
+    APFCONbits.RXDTSEL = 1; //Select RX on RA5 (instead of RA0)
+    APFCONbits.TXCKSEL = 1; //Select TX on RA5 (instead of RA1)
+    APFCONbits.P1BSEL = 0 ;
+    TRISAbits.TRISA4 = 0;   // RA4 = TX= output
+    TRISAbits.TRISA5 = 1;   // RA5 = RX = INPUT
+    //Configuration Data Rate
+    BAUDCONbits.BRG16 = 1;//0;
+    SPBRG = 25;   // = Fosc/(16*DataRate)-1;  Fosc = 1MHz et DataRate = 9600
+    //SPBRGH=25>>8;
+    //SPBRGL = 25&0xFF;
+    TXSTA = 0b00110110; // Asynchron TX config, sur 8bits,
+    TXSTAbits.BRGH = 1;
+    TXSTAbits.SYNC = 0;
+    RCSTA = 0b10010000; // Asynchron RX config, sur 8 bits
+    ANSELA = 0x00;      // pas d'analog
+
+    __delay_ms(100);
+
+    
+      do{
+        LATAbits.LATA1 =0;
+        SLEEP();
+        NOP();
+        
+        if (acquisition==1)
+        {
+           // TXREG = 111;
+            //while(!TXSTAbits.TRMT);
+            counterAcquisition = counterAcquisition+1;
+           // TXREG = counterAcquisition ;
+           // while(!TXSTAbits.TRMT);
+        CLRWDT();
+             
+            if (counterAcquisition>thresholdCounterAcquisition)
+             {
+                 counterAcquisition = 1;
+                 LATAbits.LATA1 =1;
+                 adc_char = ADC_Lecture();
+                 LATAbits.LATA1 =0;
+                 if (adc_char>threshold2){
+                     acquisition=0;
+                 }
+             }
+        }else // start of the microcontroller
+        {
+        CLRWDT();
+            // we start a lecture
+                LATAbits.LATA1 =1; 
+               adc_char = ADC_Lecture();
+        //       TXREG = 222;
+        //          while(!TXSTAbits.TRMT);
+                  
+        //       TXREG = adc_char;
+        //          while(!TXSTAbits.TRMT); // we send the result through UART
+                       LATAbits.LATA1 =0;
+               if (adc_char>threshold1) // if the voltage measured at the diode is above threshold 1: we are 
+                   // at a stage where the voltage of the battery is below 3.5V, so we do not start to think to switch on
+               {
+                   counter = counter - 1;
+                   if (counter<1)
+                   {
+                       counter  = 1;
+                   }
+               }else   // if the voltage is below the threshold, this means the voltage at the diode is
+                   // kept at 3.2V, whereas the supply voltage is above (4.5V)
+               {
+                   counter = counter +1;
+                   if (counter>thresholdCounter) // we count the number of time the supply voltage is large enough
+                   {
+                       counter  = thresholdCounter;
+                   }
+                 // SLEEP();
+               }
+
+        CLRWDT();
+                       
+               if (counter == thresholdCounter) // when there has been a long enough time that the supply voltage is above
+                   // 4.5V:
+               {
+                   acquisition = 1; // we say that the "acquisition" starts: acquisition = we count a given
+                   // number of cycles
+               //  TXREG = 11;
+               //   while(!TXSTAbits.TRMT); 
+                //   TXREG = adc_char;
+                 // while(!TXSTAbits.TRMT);
+                  LATAbits.LATA2=1; 
+               }else
+               {
+                // TXREG = counter;
+                //  while(!TXSTAbits.TRMT);
+                  LATAbits.LATA2=0;
+               }
+        }                       
+}while(1);
+}

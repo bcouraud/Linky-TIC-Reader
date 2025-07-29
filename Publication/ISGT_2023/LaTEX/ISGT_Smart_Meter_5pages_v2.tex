@@ -1,0 +1,477 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+
+
+
+%
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{picinpar}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{flushend}
+%\usepackage[latin1]{inputenc}
+\usepackage{colortbl}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{color}
+\usepackage{alltt}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{enumerate}
+\usepackage{siunitx}
+\usepackage{breakurl}
+\usepackage{epstopdf}
+\usepackage{pbox}
+\usepackage{breqn}
+\usepackage{xfrac}
+\usepackage{makecell}       % make cells inside tables
+\usepackage{nomencl}        % Nomenclature package
+\usepackage{multicol}		% Multiple columns
+\usepackage{longtable}      % Table in multiple pages
+%\usepackage{hyperref}       % hyperlinks
+%\usepackage{cleveref}       % cross-referencing
+%\usepackage{authblk}        % add affiliations
+\usepackage{multicol}       % multiple columns
+\usepackage{booktabs}		%For the table toprule midrule
+%\usepackage{courier}
+%\usepackage{subcaption}
+%\usepackage{pdflscape}
+%\usepackage{afterpage}
+%\usepackage{pdfpages}
+%\usepackage{xcolor}
+%\usepackage[official]{eurosym}
+%
+%\newcount\Comments  % 0 suppresses notes to selves in text
+%\Comments = 1
+%\newcommand{\kibitz}[2]{\ifnum\Comments=1{\color{#1}{#2}}\fi}
+%\newcommand{\bcr}[1]{\kibitz{black}{#1}} % color for review
+%\newcommand{\bcb}[1]{\kibitz{black}{#1}} % color for review
+%\newcommand{\bct}[1]{\kibitz{black}{#1}} % color for review
+%
+
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+		T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
+\begin{document}
+	
+	\title{Collecting French Smart Meter Data for Residential Flexibility %*\\
+		%{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
+			%should not be used}
+		%\thanks{Identify applicable funding agency here. If none, delete this.}
+	}
+	%
+	%\author{\IEEEauthorblockN{1\textsuperscript{st} Benoit Couraud}
+		%\IEEEauthorblockA{\textit{James Watt School of Engineering}\\
+			%	 \textit{University of Glasgow, Glasgow (UK)} \\
+			%%\textit{name of organization (of Aff.)}\\
+			%%City, Country \\
+			%benoit.couraud@glasgow.ac.uk}
+		%\and
+		%\IEEEauthorblockN{2\textsuperscript{nd} Pierre-Jean Barre}
+		%\IEEEauthorblockA{\textit{Universite Cote d'Azur} \\
+			%\textit{IMREDD, Nice (FR)}\\
+			%%City, Country \\
+			%pierre-jean.barre@univ-cotedazur.fr}
+		%\and
+		%\IEEEauthorblockN{3\textsuperscript{rd} Roberta Pennucci}
+		%\IEEEauthorblockA{\textit{Universite Cote d'Azur} \\
+			%	\textit{IMREDD, Nice (FR)}\\
+			%	%City, Country \\
+			%	roberta.pennucci@univ-cotedazur.fr}
+		%\and
+		%\IEEEauthorblockN{4\textsuperscript{th} Yann Rozier}
+		%\IEEEauthorblockA{\textit{Universite Cote d'Azur} \\
+			%	\textit{IMREDD, Nice (FR)}\\
+			%	%City, Country \\
+			%	yann.rozier@univ-cotedazur.fr}
+		%\and
+		%\IEEEauthorblockN{5\textsuperscript{th} Sonam Norbu}
+		%\IEEEauthorblockA{\textit{James Watt School of Engineering}\\
+			%	\textit{University of Glasgow, Glasgow (UK)} \\
+			%	%City, Country \\
+			%	sonam.norbu@glasgow.ac.uk}
+		%\and
+		%\IEEEauthorblockN{6\textsuperscript{th}David Flynn}
+		%\IEEEauthorblockA{\textit{James Watt School of Engineering}\\
+			%	\textit{University of Glasgow, Glasgow (UK)} \\
+			%	%City, Country \\
+			%	david.flynn@glasgow.ac.uk} 
+		
+		
+		\author{\IEEEauthorblockN{Benoit Couraud$^{1,2}$, Pierre-Jean Barre$^{2}$, Roberta Pennucci$^{2}$, Yann Rozier$^{2}$, Merlinda Andoni$^{1}$, Sonam Norbu$^{1}$,\\  Erwin Franquet$^{2}$, David Flynn$^{1}$}
+			
+			\IEEEauthorblockA{$^1$ James Watt School of Engineering, University of Glasgow, Glasgow (UK)\\
+				Email: $\{$benoit.couraud, merlinda.andoni, sonam.norbu, david.flynn$\}$@glasgow.ac.uk\\
+				$^2$ IMREDD, Universite Cote d'Azur, Nice (France)\\
+				Email: $\{$benoit.couraud, pierre-jean.barre, roberta.pennucci, yann.rozier, erwin.franquet$\}$@univ-cotedazur.fr}
+%					\thanks{Copyright: 979-8-3503-9678-2/23/.00 ©2023 IEEE}
+		}
+		
+		
+		
+		
+		%\and
+		%\IEEEauthorblockN{7\textsuperscript{th} Merlinda Andoni}
+		%\IEEEauthorblockA{\textit{James Watt School of Engineering}\\
+			%	\textit{University of Glasgow, Glasgow (UK)} \\
+			%	%City, Country \\
+			%	merlinda.andoni@glasgow.ac.uk}
+		%\and
+		%\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+		%\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+			%\textit{name of organization (of Aff.)}\\
+			%City, Country \\
+			%email address or ORCID}
+		%\and
+		%\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+		%\IEEEauthorblockA{\textit{James Watt School of Engineering, University of Glasgow, Glasgow} \\
+			%	%\textit{name of organization (of Aff.)}\\
+			%	%City, Country \\
+			%	david.flynn@glasgow.ac.uk}
+		%}
+	\IEEEoverridecommandlockouts
+
+	\IEEEpubid{\makebox[\columnwidth]{979-8-3503-9678-2/23/.00~\copyright2023 IEEE \hfill} \hspace{\columnsep}\makebox[\columnwidth]{ }}
+	\maketitle
+		\IEEEpubidadjcol
+	
+	
+	\begin{abstract}
+		Most of western countries have successfully deployed smart meters and are now in a phase of exploration to regulate and leverage the use of smart meter data. In France, the Linky smart meter provides data locally to the end-users  close to real-time, whereas it also makes 30 minutes data available to third party servers on the following day, which is inappropriate for operational energy services applications.  In this work we detail the design of a full plug and play solution named Linky TIC Reader (LTR) to locally collect data from the  French smart meter and make it available to  end-users and to third party energy services providers in close to real time. 
+This work demonstrates how we can democratize access to critical energy demand data, as to create intelligent energy demand profiles for the multi-objective optimization of consumer and electrical network constraints, with increased adoption of low carbon technologies.  
+		Furthermore, this article describes several applications of the LTR in residential flexibility procurement, including flexible load identification, flexibility events settlement or load control. 
+	\end{abstract}
+	
+	\begin{IEEEkeywords}
+		Load Analysis, load management, residential flexibility, smart grids, smart meter
+	\end{IEEEkeywords}
+	
+	\section{Introduction}
+	The energy transition requires shifting  residential energy usages to electric technologies, such as electric vehicles (EV) and heat pumps (HP)
+	% to decarbonise transport and heat respectively 
+	\cite{RTEScenario:techrep}. In parallel, the increase of gas prices has led many buildings, shared properties and homes to shift from gas based heating systems to electric heaters. However,   electric distribution  network operators (DNO) cannot always  reinforce the grid locally to enable this power increase.
+	%
+	%in gas heating based  properties that were originally designed for minimal use of electric power. 
+	In this case, end-users are often not allowed to increase their maximum power subscription, and the transition to electric heating requires them to manually switch off some other electric appliances when the heaters are turned on. 
+	%to prevent the electric meter to instantly disconnect the entire household due to an excess of consumption compared to the maximum power subscribed. 
+	%Furthermore, national power production limitations might also require electric usage to be reduced at specific times, as it advised by external signal such as Ecowatt in France \cite{ecowatt:website}. 
+	%This demonstrates the need for flexibility at a residential level. 
+	Similarly, residential flexibility might also be required by the grid operators to prevent grid congestion.
+	Such flexibility can be triggered either directly by the DNO, who can leverage the smart metering infrastructure to disconnect  households that are in a highly constrained location, or by aggregators and energy services providers who can use smart devices at the households premises to provide energy services  \cite{voltalis:website}, \cite{chargeangels:website}. Finally, residential flexibility can also be controlled directly by the end-users without any third party's intervention, in which case it can be done manually or automatically through smart devices. All these levels of flexibility control require the use of a device such as a smart meter to monitor and communicate the house's overall power. 
+	
+	In this paper, we focus on the case of France, that has already deployed more than 35 million of its smart meter \textit{Linky}.
+	%, which has positioned this smart meter project as one of the largest and most comprehensive globally. 
+	As France is now working on regulations of smart meters' data usage \cite{cre:website}, this paper first presents a computationally efficient and robust technology for collection and analysis of smart meter data. Second, the paper presents several applications of Linky's real-time data in the context of residential flexibility procurement as required by the energy transition. 
+	
+	
+	Section \ref{section:needs} describes the current context and need for flexibility at households level. Then, Section \ref{section:solution} presents a solution to collect and make available the French smart meter real-time data.
+	% and make available to the end-users or to third party energy services providers. 
+	Finally, Section \ref{section:experiments} discusses the use of the proposed solution for residential flexibility.
+	%limits of this solution and of the quality of the data collected, especially related to energy and non-energy services.
+	
+	\section{Smart Meter enabled Flexibility}
+	\label{section:needs}
+	
+	\subsection{Needs for Residential Flexibility}
+	The electrification of transport and heat will strongly impact the distribution network
+%	. Although some locations of the low voltage network will not require any reinforcement to supply all these new loads such as electric vehicles (EV) and heat pumps (HP), some other places will be impacted 
+	in terms of voltage excursion and excessive network cables heat at specific times of the day. To visualise these impacts, we ran power flow studies on the standard European Low Voltage network feeder \cite{IEEE:PESTestFeeder} for different deployment rates of EVs and HPs.
+%	 We randomly allocated real households, EVs and HP load profiles at the houses locations defined in the network from \cite{IEEE:PESTestFeeder} and computed the resulting voltage and electric current levels for more than 120  simulations with random geographical allocation of loads. 
+	 Households and EVs load profiles used are minutely data that come from ReFLEX, the UK  largest smart local energy system demonstrator in the Orkney Islands, 
+%	 named the Responsive FLEXibility (ReFLEX) project 
+	 that monitored over 140 EVs; whereas HP load profiles came from the large scale trial "Renewable Heat Premium Payment Scheme" \cite{RHPP} that monitored hundreds of heat pumps.
+%	  with a granularity of 2 minutes. 
+The average daily number of minutes with voltage excursions (below the lower voltage limit) was recorded and is displayed in Fig. \ref{Fig:voltage_excursion} as a function of the deployment rate of EV and HP. It shows that some neighbourhoods
+%the low voltage network of neighbourhoods with full deployment of electric heating and EVs, 
+might experience more than one hour per day of local voltage constraints. These constraints could either be solved by expensive grid reinforcement, or by residential flexibility coordinated by a third parties (Distribution System Operators and aggregators). 
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\columnwidth]{Images/ReFELX_EV_HP_Impact_Map2.pdf}
+		\caption{Simulated average number of minutes in a day with Low Voltage network voltage excursions in a European neighbourhood.}
+		\label{Fig:voltage_excursion}
+	\end{figure}
+	
+	Along with the energy transition, the gas prices' increase has led several households with gas heating to change for electric heating without being given the possibility to increase their maximum power subscription to cover the load increase in Winter.
+%	
+%	Furthermore, the recent increase of gas price in many countries has led buildings to shift from gas heating to electric heating. This shift has considerably increased some households' loads at peak time, and might require an increase of maximal power subscription to prevent the smart meter's circuit breaker to cut-off households. However, such maximal power subscription increase  is usually not  possible in the case of old infrastructures as it is usually the case in western countries.
+	 Therefore, several households have experienced instantaneous power cut due to excessive power consumption. This can be seen in Fig. \ref{Fig:load_example} where an apartment with a 6kVA subscription was disconnected from the grid at 18:44 by the smart meter circuit breaker due to a power consumption excess from electric loads including water storage heater, space heaters and cooking plates. A similar issue could also be faced by households acquiring an EV, as shown by the purple curve in  Fig. \ref{Fig:load_example}).
+%	  that entails an additional nominal load for charging power ranging from 3.7kW to 7.2kW (as shown in the purple curve of Fig. \ref{Fig:load_example}), which also might lead to power cut if an increase of maximum power subscription is not possible. 
+	  Such situations could be avoided thanks to  households flexibility enabled by real-time smart meter data. 
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\columnwidth]{Images/load_curvesEV.png}
+		\caption{Example of an EV charger load curve and of a winter's household electric load with a power subscription of 6kVA, and disconnection at 18:44.} % An example of real EV load is also shown for information purposes.}
+	\label{Fig:load_example}
+\end{figure}
+
+\subsection{French Smart Meter Characteristics}
+The French smart meter Linky provides two types of data that are shown in Fig. \ref{Fig:load_example}. One (in grey) with a 30minutes time interval, that is automatically sent at a remote concentrator of the French DSO through power line communication \cite{IEEE:LinkyInfrastructure}, and that is made available 
+%through websites or APIs (Application Programming Interface)
+ to the end-users on the following day,  making it inappropriate for use in operational decisions for electric flexibility. The other type of data is real-time data available locally at a time granularity below 5 seconds
+%  data the other type of data proposed by the French smart meter is available locally,
+   through connectors of the smart meter named the TIC (Tele-Information Client) and visible in Fig. \ref{Fig:dongle_Linky}. However, collecting this data requires an additional electronic device  to decode the TIC data  
+%   this real-time data 
+	and send it to a back-end that would be able to inform the end-users of load power excess or to control smart appliances. 
+	Although such device can theoretically be supplied directly by the smart meter itself, it is made complicated by the fact that 
+%	This additional electronic device must be able to decode the TIC data sent locally by the smart meter through its electronics connectors, and can be supplied directly by the smart meter. However, for power supply of such electronic device, 
+	Linky only provides an AC signal of 6$V_{rms}$ at 50kHz with a minimum power of 130mW \cite{Enedis:Linkyspec}, which is very low to supply an electronic device that aims to send data in real-time to a web service through an internet or a LoRa connection. 
+
+This section demonstrated the need for real-time monitoring of households' load consumption in order to provide residential flexibility.
+%enable a necessary local or coordinated flexibility aiming to support the energy transition and electrification. 
+%In the case of the French infrastructure, it was shown that such monitoring can be done by the smart meter Linky, but it requires the integration of an additional electronic device. % that can be supplied by the smart meter itself, but with great constraints
+  The next section describes the design of a Linky TIC Reader (LTR) which supports real-time control of local assets such as heating devices or electric vehicles.
+
+
+\section{Solution for French Smart Meter Data Collection}
+\label{section:solution}
+The main design constraints of the Linky LTR are the available power supply and space.
+% when designing such a solution are 
+% are the low power supply available at the Linky connection, and the space limitation % that we have to meet 
+% to integrate such a device into Linky's casing. 
+ The power supplied by Linky for a LTR is slightly greater than 130mW, whereas the minimal power requirement to send any message is between 400 and 560mW over a few seconds for WIFI protocol, and between 60 and 400mW for LoRa communication. Therefore, the main approach for a LTR is to store energy in a large supercapacitor, and to power up the LTR when there is enough energy to read Linky's data. Then, if the energy is large enough for data transmission, the LTR can send data to a third party web service through an API. It is therefore necessary to consider four main operations: first, the charging phase of a supercapacitor, that occurs every time the other operations have emptied the capacitor, second the recording phase, that aims to read data from the smart meter. Third, the action phase, that consists in switching on or off flexible assets directly connected to the LTR in case of high household power consumption, and finally the communication phase that sends data to a remote third party for energy or non-energy services. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\columnwidth]{Images/Schematic.png}
+	\caption{Global schematic of the LTR that controls a water storage heater.}
+	\label{Fig:schematic}
+\end{figure}
+
+\subsection{Architecture of the LTR}
+The LTR is composed of 4 main elements. The power supply, the demodulation, the communication and control, and the actuator modules.   The links between all of these elements and their schematic is proposed in Fig. \ref{Fig:schematic}. Because WIFI constraints are higher than for other protocols, the rest of the paper focusses on a WIFI version
+% of the LTR, that only applies to households for which the smart meter is at an acceptable range of the internet box. However, everything
+ that is fully replicable in a LoRa or GSM configuration. Each one of the four elements presented in Fig. \ref{Fig:schematic} are described in the next subsections.
+
+
+
+
+
+\subsection{Demodulation Module}
+The demodulation module aims to demodulate the signal that is made available by the Tele-information Client (TIC) connector of Linky smart meter. It adopts a well-adopted optocoupler based architecture that is already available to purchase on the market, and will therefore not be described here. We highlight however that there are two versions of the French smart meter, that communicate either at 1200bps or at 9600bps, which require a demodulator resistor value of 
+%either . Depending on the version, the value of the demodulator resistor at the output of the optocoupler should be changed from 
+22k$\Omega$ or 12k$\Omega$ respectively, as  shown in Fig. \ref{Fig:schematic}. 
+
+\subsection{Actuator}
+The actuator aims to connect or disconnect a flexible load depending on the household's power consumption. It consists of a latching relay similar to the one in \cite{adafruit:latchingrelay} with two coils in order to limit the power consumption from the control module. 
+%This way, the control module must dedicate one output pin to set the relay for a few miliseconds (i.e. energize one of the two coils of the relay) in order to supply a load that would be connected to the relay, and another output pin to unset the relay. 
+Small loads can directly be connected to the relay, whereas large loads require the use of an intermediary circuit breaker as it is done for peak/off-peak hours circuit breakers \cite{schneider:circuitbreaker} and shown in Fig. \ref{Fig:schematic}.
+
+\subsection{Power Supply Module}
+Although it is possible to directly supply the demodulation and communication modules using a USB power adaptor with an electric plug from the house distribution board, this paper focusses on the design of an integrated solution that directly powers from the smart meter and that would fit in any household configuration. 
+%, either those with the smart meter in the range of a Wifi connection, or those out of range, that can then use LoRa or GSM connection, based on the same operation principles described in this paper. 
+The power supply aims to rectify the AC power available, to charge a supercapacitor that acts as an energy tank and to connect this supercapacitor to the rest of the circuit (i.e. the demodulation, communication and actuator module) through the MOSFET $Q_1$ (right side of Fig. \ref{Fig:schematic}) when $C_1$ is enough charged. The indication that the supercapacitor is charged enough is given by its voltage ($V_1=\sqrt{\frac{2E}{C_1}}$), which is monitored by the power supply module and used to decide to  supply or cut off  the rest of the circuit.
+Although there are not many other options, using $V_1$ as the main indicator to supply or not the rest of the circuit brings a great challenge: indeed, although $V_1$ increases when the rest of the circuit is not connected, it will then directly decrease rapidly once the circuit is connected, which will lead to a disconnection of the rest of the circuit before it was able to finish its operation. Therefore, there is the need for a hysteresis control loop such that the connection of the rest of the circuit through  $Q_1$ is triggered at a high voltage threshold for $V_1$, and it should be kept switched on until $V_1$ decreases below a much lower voltage threshold. 
+%
+%
+%due to the small amount of power available from Linky, when the capacitor achieves a voltage that is large enough to supply the communication circuit for a few seconds, this voltage will decrease rapidly once this communication module is connected, which might then switch off again the communication module due to a lower voltage, unless an hysteresis control loop is implemented. Indeed, the idea for this power supply module is to switch on MOSFET $Q_1$ at a high voltage of the supercapacitor $C_1$, and to keep it switched on until the voltage of $C_1$ is considerably lower. 
+
+Although a Schmitt trigger could provide such hysteresis control in theory, it can not work correctly in the case of Linky as the trigger's input voltage would be directly proportional to its supply voltage (i.e.  $V_1$, the voltage at $C_1$ output).
+% is not stable because the Schmitt trigger input is derived from (proportional to) the supply voltage. 
+ Therefore, we chose to use a low power microcontroller $U_1$  to control the voltage of the hysteresis and to control the supply of the rest of the circuit through the switching of  $Q_1$.  The microcontroller implements the following logic: if the capacitor voltage has been above 4.5V for at least  20 consecutive cycles (with a low clock frequency of 1MHz), the switch $Q_1$ is switched on. This connects the ground voltage level of the communication module with the ground level of  $V_1$, which will supply the communication and control module with the 3.3V voltage regulator (MCP1825). The switch  $Q_1$ is kept switched on  until the voltage $V_1$ drops below a threshold of 4.1V for at least 200 cycles. As the microcontroller  $U_1$ is directly supplied by $V_1$, which is also the voltage that it aims to monitor,
+% , the $C_1$ capacitor voltage, 
+ this voltage measurement has to be done by an analog input of $U_1$ that measures the voltage at the end of a 3.3V Zener diode $D_1$.
+%  which we triggered by a digital output pin of $U_1$ to save energy.
+ The total cost for a single  power supply module is below 13€. 
+
+\subsection{Communication and Control Module}
+\label{section:commodule}
+In normal operation, the communication module of the LTR achieves three main purposes. First, it wakes up from sleep mode and reads  Linky data made available at the output of the demodulation module and stores it in an internal EEPROM memory before going back to sleep mode to save energy. Second, before going back to sleep: 1. If a load is connected to its actuator, the LTR takes the decision to switch on or off the actuator (which connects/disconnects the flexible electric appliance such as water storage heater or EV) based on the instant power consumption  measured by the smart meter: if the house power consumption is greater than a predetermined threshold based on the household's power subscription, it is urgent to switch off flexible appliances. 2. Similarly, in the case where some flexible appliances are remotely controlled by a third party service, 
+%in this high power consumption situation,
+ the communication module will send a \textit{switch off} request through WIFI or LoRa to the third party web service regardless of the energy quantity stored into the supercapacitor $C_1$. This will allow the third party service to put back the household to safe electric consumption by remotely switching  off their smart appliances  such as EV chargers. Finally, regardless of the household power consumption value, if the voltage $V_1$ is high enough, the communication module connects to a registered WIFI network and sends 	all the previously recorded data to a remote server (e.g. third party web service).  
+
+Before achieving this normal operation mode, the communication module must be configured in order to connect to the right WIFI SSID and to store the web addresses to which data should be sent. This is done at the initialisation phase of the LTR by having the communication module set up in Access Point mode with an internal web server stored to get the user's inputs to  successfully connect to an existing WIFI. 
+
+In order to propose an open source design that anyone could reproduce and install at their household, we worked with the compact, fully democratised and easy to use ESP8266 based WEMO D1 mini Lite boards, that can be purchased for less than 10€. One of the main advantage of such boards is that many libraries have been developed to help the implementation. More specifically, such boards have all the Transport Layer Security protocols available in dedicated libraries. Therefore, this choice  allows an easy implementation of security layers to safely connect to https servers. For what concerns security aspects, we have configured a Wificlient secure instance to set trust anchors (third party servers) using their real https  certificates delivered by a root SSL certification authority. The drawbacks of using secure connection to remote servers are discussed in Section \ref{section:experiments}.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\columnwidth]{Images/dongle_Linky3}
+	\caption{Integration of the WIFI based Linky TIC Reader (LTR) in a smart meter.}
+	\label{Fig:dongle_Linky}
+\end{figure}
+
+
+\subsection{Experimental results}
+The LTR was implemented, tested and deployed in several households for a period of over 6 months. Fig. \ref{Fig:load_example} displays the data captured by one of the LTR in green. The main learning from this implementation mostly concerns the time interval between two consecutive data transmission. Table \ref{Table:securityimpact} shows the time interval between two consecutive transmission events to a remote server in the case of a secure connection (https) and in the case of an unsecure connection.
+
+
+%
+\begin{table}[h]
+	\caption{Impacts of security layers on LTR data transmission.} % frequency.} 
+\label{Table:securityimpact}
+\small % text size of table content
+\centering % center the table
+\begin{tabular}{lccc} % alignment of each column data
+	\toprule[\heavyrulewidth]\toprule[\heavyrulewidth]
+	\textbf{Operation mode} &  \multicolumn{3}{c}{ \textbf{time interval between 2 transmissions }} \\
+	
+	\textbf{} &  mean (s) &  max (s) &  min (s)\\		
+	\midrule
+	with security layers & 54.6 & 140 & 20 \\ 
+	without security  & 33 & 68 & 19 \\ 
+	\bottomrule[\heavyrulewidth] 
+\end{tabular}
+\end{table}
+%
+%mean 54.6   max  140  min  20
+%mean 33 max 68 min 19
+
+%Also, we can compare the case of a secure connection to the remote server(through https), and the case without any security considerations. 
+Because of the required security layers, % handshake and encryption,
+% the energy consumed by the LTR to send data with a secure connection is much higher than for a simple http connection. As a result,
+it takes more time for the LTR supercapacitor to retrieve an acceptable voltage level allowing the LTR to send data again (see Table \ref{Table:securityimpact}).
+%  Therefore, a lower frequency in data collection is the price to pay for a secure connection with encrypted data and effective authentication of the device and the server. 
+%  In the rest of the paper, we discuss the potential use of LTR collected data for energy and non-energy services. 
+
+
+The final result of an LTR implementation is displayed without packaging in Fig. \ref{Fig:dongle_Linky}, with a single unit price below 30€. All the schematics and codes to reproduce this Linky TIC Reader (LTR) are  available as open source documentation from the github repository referenced in \cite{github:LTR}.
+
+
+
+
+
+\section{Use of LTR for Residential Flexibility}
+\label{section:experiments}
+%In this section, we describe the experimental results of the LTR testing phase, and discuss several usages of this device. 
+
+
+%\subsection{Use of LTR for Residential Flexibility}
+LTR can be used to support residential flexibility either in the context of an isolated household that would use the LTR to limit the overall power to the subscribed maximum power through direct control of a large flexible asset such as a water storage heater connected to the LTR actuator, or in the context of an aggregator that coordinates the flexibility of many end users. This section mainly focuses on the second use case: residential flexibility coordinated by an aggregator. %, as the first use case is obvious and mostly convered by Section \ref{section:solution}.
+
+Tasks that a flexibility aggregator must carry to obtain efficient flexibility include the clustering of end users to identify those who can actively contribute to a Demand Side Flexibility (DSF) event, the forecast of their consumption or their flexibility potential, the remote control of flexible appliances, and finally the settlement for which the aggregator determines the flexibility effort provided by end-users. We discuss here how the LTR can help residential flexibility.
+
+\subsubsection{Load analysis for customers clustering}
+\label{section:NILMclustering}
+Aggregators aim to identify flexible assets consumption patterns at the end-users premises, to better understand how they can   provide energy services. This can be done by conducting surveys or by monitoring several dedicated assets (EV chargers, heating devices, ...), which comes with a cost. In this work,  we investigated the possibility to use LTR data to identify flexible loads usage within a household (time of EV chargers connection, use of water storage heater). To do so, we installed a standard LTR and a LTR with external power supply (to obtain a higher data collection frequency, as a reference) in a real household with an electric water storage heater, a washing machine, and electric cooking devices (oven and cooking plates). Based on the data collected, we used Non-Intrusive Load Monitoring (NILM) state of the art algorithms to disaggregate the water storage heater.% as it is one of the most flexible asset in households. 
+We ran the disaggregation study for data time intervals ranging from 10s, 30s and 55s to study the impact of security implementation on the feasibility to use LTR data for  load analysis.
+%how did we do it, and data cleaning 
+%
+%
+% implemented state of the art NILM algorithms with LTR data to compare the capability to identify appliances with and without security layers.
+   Fig. \ref{Fig:NILMComparison} shows the Root Mean Square Error (RMSE) for identification of the water storage heater load in the considered household based on 6 weeks of data with a short period of calibration during which only the water heater storage appliance was connected to the mains.  We can see that for each algorithm, the identification error is similar for all data transmission time except in the case of the Sequence to Point algorithm.
+%    for which 55 seconds between two data transmission provided even better results in our case than any other algorithm used. 
+    Fig. \ref{Fig:NILMCurves} shows the output of load disaggregation FHMM algorithm for 10s granularity data, which shows that algorithms are able to accurately detect the water storage heater. However, such results were obtained while the number of loads was still low, i.e. without any other heating device, which would require a much more consequent calibration phase. Therefore, the use of LTR and  NILM flexible load identification is relevant from a technical point of view, as algorithms manage to accurately disaggregate loads, but they require an important calibration phase that might not be compatible with a residential setup.
+   
+%   
+%   Although 
+%   This demonstrates that if the TLR was to be used for NILM purposes, the addition of security layers would a priori not reduce the accuracy of the disaggregation. However, the calibration process might not be compatible with residential use cases.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.85\columnwidth]{Images/NILMComparison}
+	\caption{Comparison of  RMSE for 4 state of the art NILM algorithms used for different frequency of data transmission (15, 30 and 55 seconds).}
+	\label{Fig:NILMComparison}
+\end{figure}
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.85\columnwidth]{Images/NILMCurves}
+	\caption{Timeseries results of FHMM disaggregation algorithm along with LTR data.}
+	\label{Fig:NILMCurves}
+\end{figure}
+
+
+\subsubsection{Households load forecasting}
+An aggregator aiming to aggregate households to provide local flexibility in a constrained LV network might have to compute load forecasting at a household or a street level.  It was reminded in \cite{IEEE:ReviewSmartMeterData} that load forecasting algorithms for individual households provide very low accuracy.
+%, especially compared to the case of aggregation with many other households. 
+However, accuracy also depends on the level of time aggregation, as a 30 minutes load profile (48 data point per day) will be much more complex to forecast than a load profile with a 4 hour aggregation (6 data point per day). In this paper, we used LTR data from experimentations held by the French Chair \textit{UX for Smart Life} to investigate the impact of time aggregation on load forecasting accuracy for a single household. Therefore, we aim to compare the accuracy of an household's energy consumption forecast with hourly data to the accuracy of a forecast based on daily data. For the comparison, we used k-Nearest Neighbours algorithm as it is known for its good compromise between accuracy and speed.
+This benchmark was realised over a period of 6 months of data, and the $r^2$ metric was used to compare  accuracies.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.92\columnwidth]{Images/Forecast_Comparison.png}
+	\caption{ Accuracy ($r^2$) for prediction of a single house load profile for different levels of data aggregation and different forecast horizon.}
+	\label{Fig:ForecastAccuracy}
+\end{figure}
+Fig. \ref{Fig:ForecastAccuracy} shows that the accuracy increases considerably with the time aggregation of data. This outcome could inform the design of a local flexibility market on the required time interval  for bids to solve a specific grid constraint. Indeed, this study  shows that an individual household's load forecast with time aggregation  below 4 hours might lead to high load forecast errors (only 70\% of $r^2$ accuracy), which makes it unsuited for local flexibility markets with clearing time intervals below 4H.  
+\subsubsection{Remote control of flexible loads}
+As  discussed in Section \ref{section:solution}, flexible assets can be controlled manually, or by a dedicated smart appliance using specific protocols such as OCPP for EV chargers, or by an LTR that would switch on or off a  flexible asset such as an EV charger or a water storage heater.
+
+\subsubsection{Flexibility Settlement}
+Finally, the assessment of the flexibility effort from the end-users is required to settle a DSF event. This necessitates to compare the actual load to a virtual baseline. An approach adopted in the UK  consists in the comparison of  the actual consumption with an average consumption  (based on 30min data) over several days prior to the time of delivery, called the baseline \cite{ESO:BaselineP376}. Adding capabilities such as the ones described in Section \ref{section:NILMclustering} to these basic schemes could help to better identify actual flexibility efforts based on assets switching and not only on load reduction.
+%
+%
+% We discuss here the potential use of such data, following the list of applications proposed in \cite{IEEE:ReviewSmartMeterData}.
+%\subsubsection{Load analysis for flexibility procurement evaluation}
+%Load analysis consists in the identification of issues in the load profile
+% of a households (bad data, non-technical loss, profiling) which can be achieved with LTR data as it usually requires smart meter data based on 30 minutes interval. Moreover, using LTR data, it is also possible to analyse further households' consumption and possibly contribute in the identification of residential flexibility procurement in case of participation in a flexibility event. Residential flexibility settlement require an aggregator to compute the flexibility effort from households that participated in such event (i.e. the flexibility delivered by the household compared to a baseline). It currently consists in the comparison of  the actual consumption with an average consumption  (based on 30min data) over several days prior to the time of delivery, called the baseline \cite{ESO:BaselineP376}. Adding capabilities such as the ones described in Section \ref{section:NILM} could help to identify actual flexibility efforts based on assets switching and not only load reduction.
+%
+%
+%\subsubsection{Load Management}
+%LTR can be used for participation in demand response schemes, but also to identify itself the need to reduce an household's power consumption, and then to switch off one of the flexible assets (heating appliances, EV chargers, ...) either by direct control, as described in Fig. \ref{Fig:schematic}, or through remote control by sending the control request to a remote server able to control flexible assets.
+% In this case, as explained in section \ref{section:commodule}, it is possible to send the request as soon as a high power consumption has been read from the Linky, without waiting for the supercapacitor $C_1$ to be full, which speeds up the control process.
+
+%
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.85\columnwidth]{Images/NILMComparison}
+%\caption{Comparison of  RMSE for 4 state of the art NILM algorithms used for different frequency of data transmission (15, 30 and 55 seconds).}
+%\label{Fig:NILMComparison}
+%\end{figure}
+%
+%\subsubsection{Non-Intrusive Load Monitoring}
+%\label{section:NILM}
+%Non-intrusive Load Monitoring (NILM) consists in the identification of appliances' switching (on or off) based only on the mains' measurement, which can give information about the households' members activities and could be used by families for home based elderly monitoring. Although it usually requires high frequency resolution monitoring data (seconds to sub-second), we implemented state of the art NILM algorithms with LTR data to compare the capability to identify appliances with and without security layers.  Fig. \ref{Fig:NILMComparison} shows the Root Mean Square Error (RMSE) for identification of a water storage heater in an apartment based on 6 weeks of data with a short period of calibration during which only the water heater storage appliance was connected to the mains.  We can see that for each algorithm, the identification error is similar for all data transmission time except in the case of the Sequence to Point algorithm for which 55 seconds between two data transmission provided even better results in our case than any other algorithm used with 15 seconds data granularity. This demonstrates that if the TLR was to be used for NILM purposes, the addition of security layers would a priori not reduce the accuracy of the disaggregation. However, the calibration process might not be compatible with residential use cases.
+%
+%\subsubsection{Load Forecasting}
+%Finally, LTR can be used for load forecasting purposes. It was reminded in \cite{IEEE:ReviewSmartMeterData} that load forecasting algorithms for individual households provide very low accuracy, and thus high Mean Absolute Percentage Error, especially compared to the case of aggregation with many other households. In this paper, we used LTR data gathered from experimentations held by the French Chair \textit{UX for Smart Life} coordinated by the Universite Cote d'Azur to determine the impact of data aggregation in time on load forecasting accuracy, i.e. comparing the accuracy of a forecast of an household energy consumption for each hour of the day to the accuracy of forecasting the average energy consumption per day using k-Nearest Neighbours algorithm.
+%
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=1\columnwidth]{Images/ForecastAccuracy.png}
+%\caption{MAPE accuracy for prediction of a single house load profile for different levels of data aggregation.}
+%\label{Fig:ForecastAccuracy}
+%\end{figure}
+%Fig. \ref{Fig:ForecastAccuracy} shows that the accuracy increases considerably with the aggregation of data in time. It is indeed much more accurate to forecast energy consumption over a day than over an hour, mainly because of a reduction of data variability. This outcome could inform the design of local energy markets, as it shows that an individual household's load forecast with aggregation time below 4hours might lead to high load forecast errors, which makes it unsuited for local energy markets with clearing time intervals below 4H.  
+%
+%
+
+
+
+
+
+\section{Conclusion}
+This paper first described the relevance of smart meter data and residential flexibility to enable the energy transition. It then described an open-source plug-and-play solution to read and send French smart meter data to third party energy services to control flexible assets and provide flexibility services. The main aim of this paper was to provide a full access to such solution and to democratise access to residential flexibility, which could certainly help to support the necessary energy transition. Finally, several usages of LTR for residential flexibility were described, showing that it can  be used by aggregators to better identify flexibility loads or to help in the flexibility settlement phase. Further work will include a more  detailed study on the use of LTR data for baseline and flexibility effort computation in residential flexibility. 
+
+\section*{Acknowledgment}
+This paper was funded by the French partnership Chair \textit{UX for Smart Life: Home and Mobility} from UniCA, and by the UK EPSRC DISPATCH project (EP/V042955/1).
+
+
+
+% References
+
+\bibliographystyle{Bibliography/IEEEtranTIE}
+\bibliography{Bibliography/IEEE_biblio.bib}\ %IEEEabrv instead of IEEEfull
+
+
+
+%
+%\begin{thebibliography}{00}
+%\bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.
+%\bibitem{b2} J. Clerk Maxwell, A Treatise on Electricity and Magnetism, 3rd ed., vol. 2. Oxford: Clarendon, 1892, pp.68--73.
+%\bibitem{b3} I. S. Jacobs and C. P. Bean, ``Fine particles, thin films and exchange anisotropy,'' in Magnetism, vol. III, G. T. Rado and H. Suhl, Eds. New York: Academic, 1963, pp. 271--350.
+%\bibitem{b4} K. Elissa, ``Title of paper if known,'' unpublished.
+%\bibitem{b5} R. Nicole, ``Title of paper with only first word capitalized,'' J. Name Stand. Abbrev., in press.
+%\bibitem{b6} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ``Electron spectroscopy studies on magneto-optical media and plastic substrate interface,'' IEEE Transl. J. Magn. Japan, vol. 2, pp. 740--741, August 1987 [Digests 9th Annual Conf. Magnetics Japan, p. 301, 1982].
+%\bibitem{b7} M. Young, The Technical Writer's Handbook. Mill Valley, CA: University Science, 1989.
+%\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,18 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.28.0",
+    "express": "^4.18.1",
+    "influx": "^5.9.3",
+    "mongodb": "^4.9.0",
+    "pg": "^8.8.0"
+  }
+}

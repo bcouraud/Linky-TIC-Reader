@@ -1,0 +1,9 @@
+Info: Front (top side) placement file: 'C:\Users\Benoit Couraud\Documents\Projets\gitlab\dongle_linky-master\PCB\2025_05_PCB_Dongle_Linky_Full_CMS_WEMO - Copy\PCB_Dongle_Linky-top-pos.csv'.
+Info: Component count: 15.
+Info: Back (bottom side) placement file: 'C:\Users\Benoit Couraud\Documents\Projets\gitlab\dongle_linky-master\PCB\2025_05_PCB_Dongle_Linky_Full_CMS_WEMO - Copy\PCB_Dongle_Linky-bottom-pos.csv'.
+Info: Component count: 8.
+Info: Full component count: 23.
+Info: File generation successful.
+Info: Placement file: 'C:\Users\Benoit Couraud\Documents\Projets\gitlab\dongle_linky-master\PCB\2025_05_PCB_Dongle_Linky_Full_CMS_WEMO - Copy\PCB_Dongle_Linky-all-pos.csv'.
+Info: Component count: 23.
+Info: File generation successful.
