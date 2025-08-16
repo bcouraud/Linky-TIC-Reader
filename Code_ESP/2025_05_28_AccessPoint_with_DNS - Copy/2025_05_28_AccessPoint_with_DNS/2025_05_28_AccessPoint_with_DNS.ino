@@ -48,27 +48,10 @@ void setup(){
   Serial.begin(115200);
   Serial.println();
   EEPROM.begin(512);
-  delay(5000);
+
   //Output mode for the LED Pins
   //pinMode(led_pin,OUTPUT);
   pinMode(wifi_pin,OUTPUT);
-  int n = WiFi.scanNetworks();
-  Serial.println("Scan completed");
-
-  if (n == 0) {
-    Serial.println("No networks found");
-  } else {
-    Serial.print(n);
-    Serial.println(" networks found");
-    for (int i = 0; i < n; ++i) {
-      Serial.print(i + 1);
-      Serial.print(": ");
-      Serial.println(WiFi.SSID(i));
-    }
-  }
-
-
-
 
   WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));
 
@@ -213,10 +196,15 @@ dataEEPROM.wifipasswordEEPROM[sizeof(dataEEPROM.wifipasswordEEPROM)-1] = '\0';
   EEPROM.put(addr, dataEEPROM);
   EEPROM.commit();
 
-  Serial.println("Stored WiFi credentials in EEPROM:");
-  Serial.print("SSID: "); Serial.println(WiFi_Name);
-  Serial.print("Password: "); Serial.println(WiFi_Password);
-
+  Serial.println("Data stored in EEPROM. Reading first 20 characters:");
+  for (int i=0;i<20;i++)
+  {
+    value = EEPROM.read(i);
+    Serial.print(i);
+    Serial.print("\t");
+    Serial.print(value);
+    Serial.println();
+  }
    Serial.println("Trying to connect to Wifi");
 
   // Switch to AP + STA mode
@@ -285,33 +273,8 @@ String HTML()
     msg+=" <h3>Using Access Point (AP) Mode</h3>\n";
     msg+="<h2>Enter your WiFi network and credentials</h2>\n";
     msg+="<form action=\"/submitted\">\n";
-
-    msg += "<label for=\"wifiname\">WiFi Name:</label><br>\n";
-    msg += "<select name=\"wifiname\" id=\"wifiname\">\n";
-
-    int n = WiFi.scanNetworks();
-    for (int i = 0; i < n; ++i) {
-      msg += "<option value=\"" + WiFi.SSID(i) + "\">" + WiFi.SSID(i) + "</option>\n";
-    }
-
-    msg += "</select><br>\n";
-
-  Serial.println("Scan completed");
-
-  if (n == 0) {
-    Serial.println("No networks found");
-  } else {
-    Serial.print(n);
-    Serial.println(" networks found");
-    for (int i = 0; i < n; ++i) {
-      Serial.print(i + 1);
-      Serial.print(": ");
-      Serial.println(WiFi.SSID(i));
-    }
-  }
-
-  //  msg+=" <label for=\"wifiname\">WiFi Name:</label><br>\n";
-   // msg+=" <input type=\"text\" id=\"wifiname\" name=\"wifiname\" value=\"\"><br>\n";
+    msg+=" <label for=\"wifiname\">WiFi Name:</label><br>\n";
+    msg+=" <input type=\"text\" id=\"wifiname\" name=\"wifiname\" value=\"\"><br>\n";
     msg+=" <label for=\"password\">WiFi Password:</label><br>\n";
     msg+=" <input type=\"text\" id=\"password\" name=\"wifipassword\" value=\"\"><br><br>\n";
     msg+=" <input type=\"submit\" value=\"Submit\"> </form>\n";

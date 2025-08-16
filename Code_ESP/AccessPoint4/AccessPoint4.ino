@@ -26,11 +26,12 @@ int length_Wifiname_EEPROM = 20;
 uint8_t wifi_pin=LED_BUILTIN;
 
 struct { 
-    uint puissancemoy = 0; // we store the average power (but we could store all the previous power)
-    uint countermoy = 0;  // counter of tnhe number of times we went to sleep without being able to send data
-    String wifinameEEPROM="";
-  } 
-  dataEEPROM;
+  uint puissancemoy = 0;
+  uint countermoy = 0;
+  String wifinameEEPROM = "";
+  String wifipasswordEEPROM = "";
+} dataEEPROM;
+
 
 //Specifying the boolean variables indicating the status of LED
 //bool led_status=false; 
@@ -45,6 +46,22 @@ void setup(){
   //Output mode for the LED Pins
   //pinMode(led_pin,OUTPUT);
   pinMode(wifi_pin,OUTPUT);
+
+  int n = WiFi.scanNetworks();
+  Serial.println("Scan completed");
+
+  if (n == 0) {
+    Serial.println("No networks found");
+  } else {
+    Serial.print(n);
+    Serial.println(" networks found");
+    for (int i = 0; i < n; ++i) {
+      Serial.print(i + 1);
+      Serial.print(": ");
+      Serial.println(WiFi.SSID(i));
+    }
+  }
+
 
   //Setting the AP Mode with SSID, Password, and Max Connection Limit
   if(WiFi.softAP(ap_ssid,ap_password,1,false,max_connections)==true)
@@ -92,9 +109,13 @@ void setup(){
 // cast bytes into structure called data
   EEPROM.get(addr,dataEEPROM);
   WiFi_Name = dataEEPROM.wifinameEEPROM; // we retrieve average power from eeprom
+  WiFi_Password = dataEEPROM.wifipasswordEEPROM;
 
   Serial.print("Data stored for Wifi Name in EEPROM: ");
   Serial.println(WiFi_Name);
+  Serial.print("Stored Password: ");
+  Serial.println(WiFi_Password);
+
 
   //Starting the Server
   server.begin();
@@ -122,19 +143,6 @@ void loop() {
     Serial.println(current_stations);
   }
  
-  //Turn the LED ON/OFF as per its status set by the connected client
-  
-  /* //LED
-  if(led_status==false)
-  {
-    digitalWrite(led_pin,LOW);
-  }
-
-  else
-  {
-    digitalWrite(led_pin,HIGH);
-  } */
-
   if(WiFi_status==false)
   {
     digitalWrite(wifi_pin,LOW);
@@ -169,9 +177,6 @@ void handle_OnConnect()
 //void handle_ledon()
 void handle_WiFion()
 {
-  /*Serial.println("LED ON");
-  led_status=true;
-  server.send(200, "text/html", HTML());*/
 
   Serial.println("WiFi ON");
   WiFi_status=true;
@@ -199,34 +204,24 @@ void handle_submitted()
     message = "WiFi Name = ";
     message += server.arg("wifiname");     //Gets the value of the query parameter
     WiFi_Name = server.arg("wifiname");
+    WiFi_Password = server.arg("pwd");
   }
 
   Serial.println("WiFi Name received: ");
   Serial.println(message);
   Serial.println("storing in EEPROM");
 
-  dataEEPROM.wifinameEEPROM =   WiFi_Name ;
+  dataEEPROM.wifinameEEPROM = WiFi_Name;
+  dataEEPROM.wifipasswordEEPROM = WiFi_Password;
   EEPROM.put(addr,dataEEPROM);
   EEPROM.commit();
 
-  Serial.println("Data stored in EEPROM. Reading first 20 characters:");
-  for (int i=0;i<20;i++)
-  {
-    value = EEPROM.read(i);
-    Serial.print(i);
-    Serial.print("\t");
-    Serial.print(value);
-    Serial.println();
-  }
- 
+  Serial.println("Stored WiFi credentials in EEPROM:");
+  Serial.print("SSID: "); Serial.println(WiFi_Name);
+  Serial.print("Password: "); Serial.println(WiFi_Password); 
   server.send(200, "text/html", HTMLsubmitted());
 }
 
-/*void handle_ledoff()
-{
-  Serial.println("LED OFF");
-  led_status=false;
-  server.send(200, "text/html", HTML());*/
 
 void handle_WiFioff()
 {
@@ -283,7 +278,18 @@ String HTML()
 
     msg+=" <label for=\"wifiname\">WiFi Name:</label><br>\n";
 
-    msg+=" <input type=\"text\" id=\"wifiname\" name=\"wifiname\" value=\"\"><br>\n";
+  //  msg+=" <input type=\"text\" id=\"wifiname\" name=\"wifiname\" value=\"\"><br>\n";
+
+    msg += "<label for=\"wifiname\">WiFi Name:</label><br>\n";
+    msg += "<select name=\"wifiname\" id=\"wifiname\">\n";
+
+    int n = WiFi.scanNetworks();
+    for (int i = 0; i < n; ++i) {
+      msg += "<option value=\"" + WiFi.SSID(i) + "\">" + WiFi.SSID(i) + "</option>\n";
+    }
+
+    msg += "</select><br>\n";
+
 
     msg+=" <label for=\"pwd\">WiFi Password:</label><br>\n";
 
@@ -294,54 +300,6 @@ String HTML()
     msg+=" <p>If you click the \"Submit\" button, the Linky dongle will try to connect to your wifi until you reset it through the dedicated button (see procedure in the datasheet).</p>\n";
 
 
-/*
-  String msg="<!DOCTYPE html> <html>\n";
-    msg+="<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
-    msg+=" <title>LED Control</title>\n";
-    msg+=" <style>html{font-family:Helvetica; display:inline-block; margin:0px auto; text-align:center;}\n";
-    msg+=" body{margin-top: 50px;} h1{color: #444444; margin: 50px auto 30px;} h3{color:#444444; margin-bottom: 50px;}\n";
-    msg+=" .button{display:block; width:80px; background-color:#f48100; border:none; color:white; padding: 13px 30px; text-decoration:none; font-size:25px; margin: 0px auto 35px; cursor:pointer; border-radius:4px;}\n";
-    msg+=" .button-on{background-color:#f48100;}\n";
-    msg+=" .button-on:active{background-color:#f48100;}\n";
-    msg+=" .button-off{background-color:#26282d;}\n";
-    msg+=" .button-off:active{background-color:#26282d;}\n";
-    msg+=" </style>\n";
-    msg+=" </head>\n";
-    msg+=" <body>\n";
-    msg+=" <h1>ESP8266 Web Server</h1>\n";
-    msg+=" <h3>Using Access Point (AP) Mode</h3>\n";
-    msg+="<h2>Enter your Wifi Network and credentials</h2>\n";
-    msg+="<form action="/XXXXXX.html">\n";
-    msg+=" <label for="fname">Wifi name:</label><br>\n";
-    msg+=" <input type="text" id="fname" name="fname" value=""><br>\n";
-    msg+=" <label for="lname">Wifi Password:</label><br>\n";
-    msg+=" <input type="text" id="lname" name="lname" value=""><br><br>\n";
-    msg+=" <input type="submit" value="Submit"> </form>\n";
-    msg+=" <p>If you click the "Submit" button, the Linky dongle will try to connect to your wifi until you reset it through the dedicated button (see procedure in the datasheet).</p>\n";
-
-    msg+="   </body>\n";
-    msg+="</html>\n";
-
-
-
-
-
-*/
-
-
-
-
-
-    
-    /*if(led_status==false)
-    {
-      msg+="<p>LED Status: OFF</p><a class=\"button button-on\" href=\"/ledon\">ON</a>\n";    
-    }
-    
-    else
-    {
-      msg+="<p>LED Status: ON</p><a class=\"button button-off\" href=\"/ledoff\">OFF</a>\n";
-    }*/
 
     if(WiFi_status==false)
     {
@@ -365,7 +323,6 @@ String HTMLsubmitted()
 
     msg+=" <head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
 
-    //msg+=" <title>LED Control</title>\n";
 
     msg+=" <title>WiFi Control</title>\n";
 
@@ -393,17 +350,6 @@ String HTMLsubmitted()
 
     msg+=" <h3>Thank you for the information. We are trying to connect. Check the light status on the Linky dongle, or go back to the wifi information page</h3>\n";
 
-    /*
-    if(led_status==false)
-    {
-      msg+="<p>LED Status: OFF</p><a class=\"button button-on\" href=\"/ledon\">ON</a>\n";    
-    }
-    
-    else
-    {
-      msg+="<p>LED Status: ON</p><a class=\"button button-off\" href=\"/ledoff\">OFF</a>\n";
-    }
-    */
 
      if(WiFi_status==false)
     {

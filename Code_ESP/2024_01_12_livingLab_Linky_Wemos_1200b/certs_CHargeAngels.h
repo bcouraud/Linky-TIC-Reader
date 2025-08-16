@@ -9,8 +9,8 @@
 ////////////////////////////////////////////////////////////
 // certificate chain for api.github.com:443
 
-const char* host_url_certif = "imredd.charge-angels.com";
-const uint16_t url_port = 443;//443;
+const char* github_host = "testcharger.charge-angels.com";
+const uint16_t github_port = 443;//443;
 
 // CN: *.github.com => name: __github_com
 // not valid before: 2022-03-16 00:00:00

@@ -24,14 +24,8 @@ String currentDate = "";
 #ifndef STASSID
 
 
-//#define STASSID "livinglab"
-//#define STAPSK "2021#Bowl@LivingLab"
-
-#define STASSID "VM9478242"
-#define STAPSK "xbeubowf6ceNiJjx"
-#define PIN_Resistance_RX D6    // GPIO12
-
-
+#define STASSID "livinglab"
+#define STAPSK "2021#Bowl@LivingLab"
 
 //#define STASSID "Wifi-Flat"
 //#define STAPSK "P@ssword19"
@@ -71,8 +65,8 @@ int Danger = 0; // indicate if Power > Powermax
 int Powermax = 10000; // to be read from Linky, and stored in EEPROM
 long int t1 = 0;
 long int t2=0;
-uint voltageThreshold = 178; //190; //207; // voltage limit to startup the communication
-uint voltageThreshold2 = 158; //170; // voltage limit to startup the process
+uint voltageThreshold = 190; //207; // voltage limit to startup the communication
+uint voltageThreshold2 = 170; // voltage limit to startup the process
 //const char* host_url = "tip-imredd.unice.fr";
 const char* host_url = "imredd.charge-angels.com";
 
@@ -84,12 +78,7 @@ X509List cert(cert_DigiCert_Global_Root_CA);
    // ################ set up wifi + send message function, is triggered only 
 
    void setup_wifi(const char* host_parameter) {
-  digitalWrite(LED_BUILTIN, HIGH); // initialisation
-  delay(10);
-  digitalWrite(LED_BUILTIN, LOW);
-    delay(100);
-   digitalWrite(LED_BUILTIN, HIGH); // initialisation
-     delay(100);
+
   
       //WiFi.mode(WIFI_STA);
 
@@ -102,12 +91,7 @@ X509List cert(cert_DigiCert_Global_Root_CA);
   while (WiFi.status() != WL_CONNECTED) {
     delay(50);
   }
-  digitalWrite(LED_BUILTIN, HIGH); // initialisation
-  delay(10);
-  digitalWrite(LED_BUILTIN, LOW);
-    delay(100);
-   digitalWrite(LED_BUILTIN, HIGH); // initialisation
-     delay(100);
+
            if (debug==1){
  Serial.println("connected");
  Serial.println("IP address: "); //
@@ -246,21 +230,13 @@ client.stop();
       client.println(F("User-Agent: ESP"));
       client.println(F("Connection: close"));
       client.println(F("Content-Type: application/json"));
-      client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiNWEzZDM1YzlkNWNlNDE2MGRhMmQ5ZGFhYjA4NTA1ODc5ODFlNTExM2MyYzMyOTA0Yzc4YmU2NGEzNWU2ODliYyIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50OkJpbGxpbmdBY2NvdW50T25ib2FyZCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ2hhcmdpbmdTdGF0aW9uQ2VydGlmaWNhdGU6TGlzdCIsIkNvbXBhbnk6TGlzdCIsIkNvbm5lY3Rpb246TGlzdCIsIkludm9pY2U6TGlzdCIsIkxvZ2dpbmc6TGlzdCIsIk9jcGlFbmRwb2ludDpMaXN0IiwiT2ljcEVuZHBvaW50Okxpc3QiLCJQYXltZW50TWV0aG9kOkxpc3QiLCJQbGFubmluZzpMaXN0IiwiUHJpY2luZ0RlZmluaXRpb246TGlzdCIsIlJlZ2lzdHJhdGlvblRva2VuOkxpc3QiLCJSZWxlYXNlTm90ZXM6TGlzdCIsIlNldHRpbmc6TGlzdCIsIlNpdGU6TGlzdCIsIlNpdGVBcmVhOkxpc3QiLCJTaXRlVXNlcnM6TGlzdCIsIlNvdXJjZTpMaXN0IiwiU3Vic2NyaXB0aW9uOkxpc3QiLCJTdWJzY3JpcHRpb246VXBkYXRlIiwiVGFnOkxpc3QiLCJUYWc6VXBkYXRlIiwiVGF4Okxpc3QiLCJUcmFuc2FjdGlvbjpJbkVycm9yIiwiVHJhbnNhY3Rpb246TGlzdCIsIlVzZXI6SW5FcnJvciIsIlVzZXI6TGlzdCIsIlVzZXI6VXBkYXRlIiwiVXNlckdyb3VwOkxpc3QiLCJVc2VyU2l0ZXM6TGlzdCIsIlVzZXJTdWJzY3JpcHRpb246TGlzdCJdLCJhY3RpdmVDb21wb25lbnRzIjpbInByaWNpbmciLCJiaWxsaW5nIiwib3JnYW5pemF0aW9uIiwiY2FyIiwiYXNzZXQiLCJzdGF0aXN0aWNzIiwic21hcnRDaGFyZ2luZyJdLCJhY3RpdmVGZWF0dXJlcyI6WyJjaGFyZ2luZ1N0YXRpb25NYXAiLCJjaGFyZ2luZ1N0YXRpb25QbGFubmluZyIsInVzZXJHcm91cCIsInVzZXJQcmljaW5nIiwiY29tcGFueVByaWNpbmciLCJzaXRlQXJlYVByaWNpbmciLCJ1c2VyR3JvdXBQcmljaW5nIiwiZGVncmVzc2l2ZVByaWNpbmciXSwiZGlzdGFuY2VVbml0Ijoia21zIiwiaWF0IjoxNzUxNTc5NTQxLCJleHAiOjE3NjcxMzE1NDF9.U54OuAHPW2GmCDo9aCVFqQoIXNUq00UA9jggR6ixqHo"));
+      client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiNWEzZDM1YzlkNWNlNDE2MGRhMmQ5ZGFhYjA4NTA1ODc5ODFlNTExM2MyYzMyOTA0Yzc4YmU2NGEzNWU2ODliYyIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50OkJpbGxpbmdBY2NvdW50T25ib2FyZCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ2hhcmdpbmdTdGF0aW9uQ2VydGlmaWNhdGU6TGlzdCIsIkNvbXBhbnk6TGlzdCIsIkNvbm5lY3Rpb246TGlzdCIsIkludm9pY2U6TGlzdCIsIkxvZ2dpbmc6TGlzdCIsIk9jcGlFbmRwb2ludDpMaXN0IiwiT2ljcEVuZHBvaW50Okxpc3QiLCJQYXltZW50TWV0aG9kOkxpc3QiLCJQbGFubmluZzpMaXN0IiwiUHJpY2luZ0RlZmluaXRpb246TGlzdCIsIlJlZ2lzdHJhdGlvblRva2VuOkxpc3QiLCJTZXR0aW5nOkxpc3QiLCJTaXRlOkxpc3QiLCJTaXRlQXJlYTpMaXN0IiwiU2l0ZVVzZXI6TGlzdCIsIlNvdXJjZTpMaXN0IiwiU3Vic2NyaXB0aW9uOkxpc3QiLCJUYWc6TGlzdCIsIlRhZzpVcGRhdGUiLCJUYXg6TGlzdCIsIlRyYW5zYWN0aW9uOkluRXJyb3IiLCJUcmFuc2FjdGlvbjpMaXN0IiwiVXNlcjpJbkVycm9yIiwiVXNlcjpMaXN0IiwiVXNlcjpVcGRhdGUiLCJVc2VyR3JvdXA6TGlzdCIsIlVzZXJTaXRlOkxpc3QiXSwiYWN0aXZlQ29tcG9uZW50cyI6WyJwcmljaW5nIiwiYmlsbGluZyIsIm9yZ2FuaXphdGlvbiIsImNhciIsImFzc2V0Iiwic3RhdGlzdGljcyIsInNtYXJ0Q2hhcmdpbmciXSwiYWN0aXZlRmVhdHVyZXMiOlsiY2hhcmdpbmdTdGF0aW9uTWFwIiwiY2hhcmdpbmdTdGF0aW9uUGxhbm5pbmciLCJ1c2VyR3JvdXAiLCJ1c2VyUHJpY2luZyIsImNvbXBhbnlQcmljaW5nIiwic2l0ZUFyZWFQcmljaW5nIiwidXNlckdyb3VwUHJpY2luZyIsImRlZ3Jlc3NpdmVQcmljaW5nIl0sImlhdCI6MTcwNzQ5MjczMSwiZXhwIjoxNzIzMDQ0NzMxfQ.EPzPfQkx2R-rkP2GgHeiXPrWXc0Ui48W52p1j0ypowk"));
       client.print(F("Content-Length: "));
       client.println(httpRequestData.length());
       client.println();
       client.println(httpRequestData);
 
     } 
-      digitalWrite(LED_BUILTIN, HIGH); // initialisation
-  delay(10);
-  digitalWrite(LED_BUILTIN, LOW);
-    delay(100);
-   digitalWrite(LED_BUILTIN, HIGH); // initialisation
-     delay(100);
-
-
                if (debug==1){
  Serial.println("Request Sent:");
  Serial.println(httpRequestData);
@@ -315,8 +291,7 @@ String httpRequestData = "linkySensor,sensor_id=LinkyLivingLab power="+String(pu
       client.println(F("User-Agent: ESP"));
       client.println(F("Connection: close"));
       client.println(F("Content-Type: application/json"));
-      //client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiYTI5NzRmODEzZGVkZDUyOTk2YTExNTQ3ZTMyYWJjMDE2ZmFjNDBmMTlhMWI2YWRmYmEzMGFlYTFlY2ExYTM0YiIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ29tcGFueTpMaXN0IiwiQ29ubmVjdGlvbjpMaXN0IiwiSW52b2ljZTpMaXN0IiwiTG9nZ2luZzpMaXN0IiwiT2NwaUVuZHBvaW50Okxpc3QiLCJPaWNwRW5kcG9pbnQ6TGlzdCIsIlBheW1lbnRNZXRob2Q6TGlzdCIsIlBsYW5uaW5nOkxpc3QiLCJQcmljaW5nRGVmaW5pdGlvbjpMaXN0IiwiUmVnaXN0cmF0aW9uVG9rZW46TGlzdCIsIlNldHRpbmc6TGlzdCIsIlNpdGU6TGlzdCIsIlNpdGVBcmVhOkxpc3QiLCJTaXRlVXNlcjpMaXN0IiwiU291cmNlOkxpc3QiLCJUYWc6TGlzdCIsIlRhZzpVcGRhdGUiLCJUYXg6TGlzdCIsIlRyYW5zYWN0aW9uOkluRXJyb3IiLCJUcmFuc2FjdGlvbjpMaXN0IiwiVXNlcjpJbkVycm9yIiwiVXNlcjpMaXN0IiwiVXNlcjpVcGRhdGUiLCJVc2VyR3JvdXA6TGlzdCIsIlVzZXJTaXRlOkxpc3QiXSwiYWN0aXZlQ29tcG9uZW50cyI6WyJwcmljaW5nIiwib3JnYW5pemF0aW9uIiwiY2FyIiwiYXNzZXQiLCJzdGF0aXN0aWNzIiwic21hcnRDaGFyZ2luZyJdLCJhY3RpdmVGZWF0dXJlcyI6WyJjaGFyZ2luZ1N0YXRpb25NYXAiLCJjaGFyZ2luZ1N0YXRpb25QbGFubmluZyIsInVzZXJHcm91cCIsInVzZXJQcmljaW5nIiwidXNlckdyb3VwUHJpY2luZyJdLCJpYXQiOjE2ODIwNjU1ODAsImV4cCI6MTY5NzYxNzU4MH0.1C9H2giT6xGbDNAVgeuGPuHphHZD0VbkPrDdA_uNg-8"));
-      client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiNWEzZDM1YzlkNWNlNDE2MGRhMmQ5ZGFhYjA4NTA1ODc5ODFlNTExM2MyYzMyOTA0Yzc4YmU2NGEzNWU2ODliYyIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50OkJpbGxpbmdBY2NvdW50T25ib2FyZCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ2hhcmdpbmdTdGF0aW9uQ2VydGlmaWNhdGU6TGlzdCIsIkNvbXBhbnk6TGlzdCIsIkNvbm5lY3Rpb246TGlzdCIsIkludm9pY2U6TGlzdCIsIkxvZ2dpbmc6TGlzdCIsIk9jcGlFbmRwb2ludDpMaXN0IiwiT2ljcEVuZHBvaW50Okxpc3QiLCJQYXltZW50TWV0aG9kOkxpc3QiLCJQbGFubmluZzpMaXN0IiwiUHJpY2luZ0RlZmluaXRpb246TGlzdCIsIlJlZ2lzdHJhdGlvblRva2VuOkxpc3QiLCJSZWxlYXNlTm90ZXM6TGlzdCIsIlNldHRpbmc6TGlzdCIsIlNpdGU6TGlzdCIsIlNpdGVBcmVhOkxpc3QiLCJTaXRlVXNlcnM6TGlzdCIsIlNvdXJjZTpMaXN0IiwiU3Vic2NyaXB0aW9uOkxpc3QiLCJTdWJzY3JpcHRpb246VXBkYXRlIiwiVGFnOkxpc3QiLCJUYWc6VXBkYXRlIiwiVGF4Okxpc3QiLCJUcmFuc2FjdGlvbjpJbkVycm9yIiwiVHJhbnNhY3Rpb246TGlzdCIsIlVzZXI6SW5FcnJvciIsIlVzZXI6TGlzdCIsIlVzZXI6VXBkYXRlIiwiVXNlckdyb3VwOkxpc3QiLCJVc2VyU2l0ZXM6TGlzdCIsIlVzZXJTdWJzY3JpcHRpb246TGlzdCJdLCJhY3RpdmVDb21wb25lbnRzIjpbInByaWNpbmciLCJiaWxsaW5nIiwib3JnYW5pemF0aW9uIiwiY2FyIiwiYXNzZXQiLCJzdGF0aXN0aWNzIiwic21hcnRDaGFyZ2luZyJdLCJhY3RpdmVGZWF0dXJlcyI6WyJjaGFyZ2luZ1N0YXRpb25NYXAiLCJjaGFyZ2luZ1N0YXRpb25QbGFubmluZyIsInVzZXJHcm91cCIsInVzZXJQcmljaW5nIiwiY29tcGFueVByaWNpbmciLCJzaXRlQXJlYVByaWNpbmciLCJ1c2VyR3JvdXBQcmljaW5nIiwiZGVncmVzc2l2ZVByaWNpbmciXSwiZGlzdGFuY2VVbml0Ijoia21zIiwiaWF0IjoxNzUwNDA4MDY5LCJleHAiOjE3NjU5NjAwNjl9.Ui9eNJG6OFNBJboMzF2Wrew6J9Au-hkgSVfLBXnDGQ8"));
+      client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiYTI5NzRmODEzZGVkZDUyOTk2YTExNTQ3ZTMyYWJjMDE2ZmFjNDBmMTlhMWI2YWRmYmEzMGFlYTFlY2ExYTM0YiIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ29tcGFueTpMaXN0IiwiQ29ubmVjdGlvbjpMaXN0IiwiSW52b2ljZTpMaXN0IiwiTG9nZ2luZzpMaXN0IiwiT2NwaUVuZHBvaW50Okxpc3QiLCJPaWNwRW5kcG9pbnQ6TGlzdCIsIlBheW1lbnRNZXRob2Q6TGlzdCIsIlBsYW5uaW5nOkxpc3QiLCJQcmljaW5nRGVmaW5pdGlvbjpMaXN0IiwiUmVnaXN0cmF0aW9uVG9rZW46TGlzdCIsIlNldHRpbmc6TGlzdCIsIlNpdGU6TGlzdCIsIlNpdGVBcmVhOkxpc3QiLCJTaXRlVXNlcjpMaXN0IiwiU291cmNlOkxpc3QiLCJUYWc6TGlzdCIsIlRhZzpVcGRhdGUiLCJUYXg6TGlzdCIsIlRyYW5zYWN0aW9uOkluRXJyb3IiLCJUcmFuc2FjdGlvbjpMaXN0IiwiVXNlcjpJbkVycm9yIiwiVXNlcjpMaXN0IiwiVXNlcjpVcGRhdGUiLCJVc2VyR3JvdXA6TGlzdCIsIlVzZXJTaXRlOkxpc3QiXSwiYWN0aXZlQ29tcG9uZW50cyI6WyJwcmljaW5nIiwib3JnYW5pemF0aW9uIiwiY2FyIiwiYXNzZXQiLCJzdGF0aXN0aWNzIiwic21hcnRDaGFyZ2luZyJdLCJhY3RpdmVGZWF0dXJlcyI6WyJjaGFyZ2luZ1N0YXRpb25NYXAiLCJjaGFyZ2luZ1N0YXRpb25QbGFubmluZyIsInVzZXJHcm91cCIsInVzZXJQcmljaW5nIiwidXNlckdyb3VwUHJpY2luZyJdLCJpYXQiOjE2ODIwNjU1ODAsImV4cCI6MTY5NzYxNzU4MH0.1C9H2giT6xGbDNAVgeuGPuHphHZD0VbkPrDdA_uNg-8"));
       client.print(F("Content-Length: "));
       client.println(httpRequestData.length());
       client.println();
@@ -484,7 +459,7 @@ if (second(epoch_time)>9) {
     return;
   }
 
-  String url = "/v1/api/assets/65290bc4d788d24fc7982ebe/consumptions"; //"/a/check";
+  String url = "/v1/api/assets/6365122519b9aa99b068c09a/consumptions"; //"/a/check";
 
 
 // https://wokwi.com/projects/327948646817464914
@@ -497,7 +472,7 @@ client.stop();
       client.println(F("User-Agent: ESP"));
       client.println(F("Connection: close"));
       client.println(F("Content-Type: application/json"));
-      client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiNWEzZDM1YzlkNWNlNDE2MGRhMmQ5ZGFhYjA4NTA1ODc5ODFlNTExM2MyYzMyOTA0Yzc4YmU2NGEzNWU2ODliYyIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50OkJpbGxpbmdBY2NvdW50T25ib2FyZCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ2hhcmdpbmdTdGF0aW9uQ2VydGlmaWNhdGU6TGlzdCIsIkNvbXBhbnk6TGlzdCIsIkNvbm5lY3Rpb246TGlzdCIsIkludm9pY2U6TGlzdCIsIkxvZ2dpbmc6TGlzdCIsIk9jcGlFbmRwb2ludDpMaXN0IiwiT2ljcEVuZHBvaW50Okxpc3QiLCJQYXltZW50TWV0aG9kOkxpc3QiLCJQbGFubmluZzpMaXN0IiwiUHJpY2luZ0RlZmluaXRpb246TGlzdCIsIlJlZ2lzdHJhdGlvblRva2VuOkxpc3QiLCJSZWxlYXNlTm90ZXM6TGlzdCIsIlNldHRpbmc6TGlzdCIsIlNpdGU6TGlzdCIsIlNpdGVBcmVhOkxpc3QiLCJTaXRlVXNlcnM6TGlzdCIsIlNvdXJjZTpMaXN0IiwiU3Vic2NyaXB0aW9uOkxpc3QiLCJTdWJzY3JpcHRpb246VXBkYXRlIiwiVGFnOkxpc3QiLCJUYWc6VXBkYXRlIiwiVGF4Okxpc3QiLCJUcmFuc2FjdGlvbjpJbkVycm9yIiwiVHJhbnNhY3Rpb246TGlzdCIsIlVzZXI6SW5FcnJvciIsIlVzZXI6TGlzdCIsIlVzZXI6VXBkYXRlIiwiVXNlckdyb3VwOkxpc3QiLCJVc2VyU2l0ZXM6TGlzdCIsIlVzZXJTdWJzY3JpcHRpb246TGlzdCJdLCJhY3RpdmVDb21wb25lbnRzIjpbInByaWNpbmciLCJiaWxsaW5nIiwib3JnYW5pemF0aW9uIiwiY2FyIiwiYXNzZXQiLCJzdGF0aXN0aWNzIiwic21hcnRDaGFyZ2luZyJdLCJhY3RpdmVGZWF0dXJlcyI6WyJjaGFyZ2luZ1N0YXRpb25NYXAiLCJjaGFyZ2luZ1N0YXRpb25QbGFubmluZyIsInVzZXJHcm91cCIsInVzZXJQcmljaW5nIiwiY29tcGFueVByaWNpbmciLCJzaXRlQXJlYVByaWNpbmciLCJ1c2VyR3JvdXBQcmljaW5nIiwiZGVncmVzc2l2ZVByaWNpbmciXSwiZGlzdGFuY2VVbml0Ijoia21zIiwiaWF0IjoxNzUxNTc5NTQxLCJleHAiOjE3NjcxMzE1NDF9.U54OuAHPW2GmCDo9aCVFqQoIXNUq00UA9jggR6ixqHo"));
+      client.println(F("Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjU2MGNmNTY2ODlkNzk5MDBkZGU3MSIsInJvbGUiOiJBIiwicm9sZXNBQ0wiOlsiYWRtaW4iXSwibmFtZSI6IklNUkVERCIsIm1vYmlsZSI6IiIsImVtYWlsIjoiYmVub2l0LmNvdXJhdWRAdW5pY2UuZnIiLCJmaXJzdE5hbWUiOiJBUEkiLCJsb2NhbGUiOiJlbl9VUyIsImxhbmd1YWdlIjoiZW4iLCJjdXJyZW5jeSI6IkVVUiIsInRlbmFudElEIjoiNWMzZGU5MTA2NmMwM2YwMDA5OGRhNDBhIiwidGVuYW50TmFtZSI6IklNUkVERCAoQ2l0eSBvZiBOaWNlKSIsInRlbmFudFN1YmRvbWFpbiI6ImltcmVkZCIsInVzZXJIYXNoSUQiOiJmZTZhMjBjYTIzOWY2MjdhZTNkY2NhN2QwNWFmMDYzODZiNzY2ZGFiYTEyNmZmNzBkYTg4NmYwNTgzMjkxOTU3IiwidGVuYW50SGFzaElEIjoiYTI5NzRmODEzZGVkZDUyOTk2YTExNTQ3ZTMyYWJjMDE2ZmFjNDBmMTlhMWI2YWRmYmEzMGFlYTFlY2ExYTM0YiIsInNjb3BlcyI6WyJBc3NldDpJbkVycm9yIiwiQXNzZXQ6TGlzdCIsIkJpbGxpbmdBY2NvdW50Okxpc3QiLCJCaWxsaW5nVHJhbnNmZXI6TGlzdCIsIkNhcjpMaXN0IiwiQ2FyQ2F0YWxvZzpMaXN0IiwiQ2hhcmdpbmdQcm9maWxlOkxpc3QiLCJDaGFyZ2luZ1N0YXRpb246SW5FcnJvciIsIkNoYXJnaW5nU3RhdGlvbjpMaXN0IiwiQ29tcGFueTpMaXN0IiwiQ29ubmVjdGlvbjpMaXN0IiwiSW52b2ljZTpMaXN0IiwiTG9nZ2luZzpMaXN0IiwiT2NwaUVuZHBvaW50Okxpc3QiLCJPaWNwRW5kcG9pbnQ6TGlzdCIsIlBheW1lbnRNZXRob2Q6TGlzdCIsIlBsYW5uaW5nOkxpc3QiLCJQcmljaW5nRGVmaW5pdGlvbjpMaXN0IiwiUmVnaXN0cmF0aW9uVG9rZW46TGlzdCIsIlNldHRpbmc6TGlzdCIsIlNpdGU6TGlzdCIsIlNpdGVBcmVhOkxpc3QiLCJTaXRlVXNlcjpMaXN0IiwiU291cmNlOkxpc3QiLCJUYWc6TGlzdCIsIlRhZzpVcGRhdGUiLCJUYXg6TGlzdCIsIlRyYW5zYWN0aW9uOkluRXJyb3IiLCJUcmFuc2FjdGlvbjpMaXN0IiwiVXNlcjpJbkVycm9yIiwiVXNlcjpMaXN0IiwiVXNlcjpVcGRhdGUiLCJVc2VyR3JvdXA6TGlzdCIsIlVzZXJTaXRlOkxpc3QiXSwiYWN0aXZlQ29tcG9uZW50cyI6WyJwcmljaW5nIiwib3JnYW5pemF0aW9uIiwiY2FyIiwiYXNzZXQiLCJzdGF0aXN0aWNzIiwic21hcnRDaGFyZ2luZyJdLCJhY3RpdmVGZWF0dXJlcyI6WyJjaGFyZ2luZ1N0YXRpb25NYXAiLCJjaGFyZ2luZ1N0YXRpb25QbGFubmluZyIsInVzZXJHcm91cCIsInVzZXJQcmljaW5nIiwidXNlckdyb3VwUHJpY2luZyJdLCJpYXQiOjE2ODIwNjU1ODAsImV4cCI6MTY5NzYxNzU4MH0.1C9H2giT6xGbDNAVgeuGPuHphHZD0VbkPrDdA_uNg-8"));
       client.print(F("Content-Length: "));
       client.println(httpRequestData.length());
       client.println();
@@ -521,6 +496,10 @@ client.stop();
       // Send HTTP GET request
      // int httpResponseCode = http.GET(); //send GET request to the server
 //if (httpResponseCode>0) {            
+//   digitalWrite(0, LOW); // initialisation
+//delay(50);               
+ // digitalWrite(0, HIGH); // initialisation
+//delay(50);
 // }
 }*/
    // ################ listen to Linky, every 15 seconds ##################### 
@@ -530,7 +509,10 @@ client.stop();
    // ################ listen to Linky, every 15 seconds ##################### 
 void readLinky9600(){
  // Serial.println("reading TIC!");
-
+//digitalWrite(0, LOW); // initialisation
+//delay(50);               
+// digitalWrite(0, HIGH); // initialisation
+//delay(50);
   int communication = Serial.available(); 
   if (communication != 0)  // when we receive a character
   {
@@ -642,6 +624,9 @@ void readLinky9600(){
    // ################ listen to Linky, every 15 seconds ##################### 
 void readLinky1200(){
  // Serial.println("reading TIC!");
+//digitalWrite(0, LOW); // initialisation
+//delay(50);               
+// digitalWrite(0, HIGH); // initialisation
 //delay(50);
   int communication = Serial.available(); 
   if (communication != 0)  // when we receive a character
@@ -730,20 +715,13 @@ void readLinky1200(){
 
 
  void setup() {
-
-   pinMode(PIN_Resistance_RX, OUTPUT);
-   digitalWrite(PIN_Resistance_RX, LOW); // Deactivate the resistance after the optocoupler to ensure the 1200baud is by default
-
-
-
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH); // initialisation
+  pinMode(0, OUTPUT);
+  digitalWrite(0, HIGH); // initialisation
   delay(10);
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(0, LOW);
     delay(100);
-   digitalWrite(LED_BUILTIN, HIGH); // initialisation
-     delay(100);
- pinMode(5, OUTPUT);
+   digitalWrite(0, HIGH); // initialisation
+  pinMode(5, OUTPUT);
   digitalWrite(5, LOW);
  if (debug==1){
   Serial.begin(9600);
