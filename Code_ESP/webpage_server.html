@@ -1,0 +1,103 @@
+    msg="<h1>Configurez votre Dongle Linky</h1>\n";
+
+msg += "<form action='/save' method='post'>";
+
+   msg += "<h3>WiFi</h3>";
+   msg+="<h4>Choisissez votre Wifi, et entrez le mot de passe de votre box internet/de votre wifi.</h4>\n";
+
+       msg += "<label for='ssid'>Reseau WiFi:</label><br>\n";
+    msg += "<select name='ssid' id='ssid'>\n";
+
+    // dynamically add WiFi networks here
+    int n = WiFi.scanNetworks();
+    for (int i = 0; i < n; ++i) {
+      msg += "<option value='" + WiFi.SSID(i) + "'>" + WiFi.SSID(i) + "</option>\n";
+    }
+    msg+="</select><br>\n";
+
+//  msg += "SSID: <input name='ssid'><br>";
+    msg+="<label for='pass'>Mot de passe du WiFi (Mot de passe de votre box internet):</label><br>\n";
+        msg+="<input type='text' id='pass' name='pass'><br><br>\n";
+
+//  msg += "Password: <input name='pass' type='password'><br><br>";
+
+
+
+  msg += "<h3>Service Provider</h3>";
+  msg += "<select name='provider' onchange='showProviderFields(this.value)'>";
+  msg += "<option value='none'> </option>";
+  msg += "<option value='unica'>UniCA IMREDD</option>";
+  msg += "<option value='chargeangels'>Charge Angels</option>";
+  msg += "<option value='other'>Other</option>";
+  msg += "</select><br><br>";
+
+    // UniCA block
+  msg += "<div id='unica_fields' style='display:none'>";
+  msg += "Sensor ID: <input name='sensor_id' value='LinkyHouse4'><br>";
+  msg += "</div>";
+
+    // Charge Angels block
+  msg += "<div id='chargeangels_fields' style='display:none'>";
+  msg += "Asset ID: <input name='asset_id'><br>";
+  msg += "Bearer Token:<br><textarea name='token' rows='6' cols='40'></textarea><br>";
+  msg += "</div>";
+
+    // Other block
+  msg += "<div id='other_fields' style='display:none'>";
+  msg += "Host: <input name='host'><br>";
+  msg += "URL: <input name='url'><br>";
+  msg += "Port: <input name='port'><br>";
+   msg += "Sensor ID: <input name='sensor_id' value='LinkyHouse4'><br>";
+
+  msg += "Method: <select name='method'><option>GET</option><option>POST</option><option>PATCH</option></select><br>";
+  msg += "Content-Type: <input name='ctype' value='application/json'><br>";
+  msg += "Authorization: <input name='auth'><br>";
+  msg += "Custom Body:<br><textarea name='body' rows='6' cols='40'></textarea><br>";
+  msg += "</div>";
+
+      msg+="<input type='submit' value='Valider'>\n";
+
+
+//  msg += "<br><input type='submit' value='Save'>";
+  msg += "</form>";
+
+      msg+="<p>Lorsque vous cliquez sur \"Valider\" le dongle essaiera de se connecter au reseau choisi avec le mot de passe. Pour reconfigurer, rebranchez le dongle.</p>\n";
+
+
+
+    // Javascript for dynamic blocks
+  msg += "<script>"
+            "function showProviderFields(p) {"
+            "document.getElementById('unica_fields').style.display=(p=='unica')?'block':'none';"
+            "document.getElementById('chargeangels_fields').style.display=(p=='chargeangels')?'block':'none';"
+            "document.getElementById('other_fields').style.display=(p=='other')?'block':'none';"
+            "}"
+            "</script>";
+
+    msg+="</body></html>\n";
+
+
+
+
+
+    msg="<h1>Configurez votre Dongle Linky</h1>\n";
+    msg+="<h2>Choisissez votre Wifi, et entrez le mot de passe de votre box internet/de votre wifi.</h2>\n";
+    msg+="<form action='/submitted'>\n";
+
+    msg+="<label for='wifiname'>Reseau WiFi:</label><br>\n";
+    msg+="<select name='wifiname' id='wifiname'>\n";
+
+    // dynamically add WiFi networks here
+    int n = WiFi.scanNetworks();
+    for (int i = 0; i < n; ++i) {
+      msg += "<option value='" + WiFi.SSID(i) + "'>" + WiFi.SSID(i) + "</option>\n";
+    }
+    msg+="</select><br>\n";
+
+    msg+="<label for='password'>Mot de passe du WiFi (Mot de passe de votre box internet):</label><br>\n";
+    msg+="<input type='text' id='password' name='wifipassword'><br><br>\n";
+    msg+="<input type='submit' value='Valider'>\n";
+    msg+="</form>\n";
+    msg+="<p>Lorsque vous cliquez sur \"Valider\" le dongle essaiera de se connecter au reseau choisi avec le mot de passe. Pour reconfigurer, rebranchez le dongle.</p>\n";
+    msg+="</body></html>\n";
+    String fullPage = header + msg + footer;

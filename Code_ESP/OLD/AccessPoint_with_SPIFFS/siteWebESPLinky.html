@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html>
+  <head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">
+  <title>LED Control</title>
+  <style>html{font-family:Helvetica; display:inline-block; margin:0px auto; text-align:center;}
+  body{margin-top: 50px;} h1{color: #444444; margin: 50px auto 30px;} h3{color:#444444; margin-bottom: 50px;}
+  .button{display:block; width:80px; background-color:#f48100; border:none; color:white; padding: 13px 30px; text-decoration:none; font-size:25px; margin: 0px auto 35px; cursor:pointer; border-radius:4px;}
+  .button-on{background-color:#f48100;}
+  .button-on:active{background-color:#f48100;}
+  .button-off{background-color:#26282d;}
+  .button-off:active{background-color:#26282d;}
+  </style>
+  </head>
+  <body>
+  <h1>ESP8266 Web Server</h1>
+  <h3>Using Access Point (AP) Mode</h3>
+  
+  
+<h2>Enter your Wifi Network and credentials</h2>
+
+<form action="/XXXXXX.html">
+  <label for="fname">Wifi name:</label><br>
+  <input type="text" id="fname" name="fname" value=""><br>
+  <label for="lname">Wifi Password:</label><br>
+  <input type="text" id="lname" name="lname" value=""><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the Linky dongle will try to connect to your wifi until you reset it through the dedicated button (see procedure in the datasheet).</p>
+
+
+
+  
+    </body>

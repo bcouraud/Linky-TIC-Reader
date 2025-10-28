@@ -1,0 +1,27 @@
+
+<!DOCTYPE html><html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Watty Config</title><style>body{margin:0;font-family:Arial,sans-serif;color:#bdbdbd;text-align:center;background:radial-gradient(circle,#202126,#161924);}h1,h2{margin:20px;}form{margin-top:20px;}select,input[type=text],input[type=submit]{font-size:1rem;padding:10px;margin:10px;border:2px solid #00acfb;border-radius:10px;background:transparent;color:#bdbdbd;box-shadow:0 0 8px rgba(0,172,251,.6);transition:.3s;}select:focus,input[type=text]:focus,input[type=submit]:focus{outline:none;box-shadow:0 0 20px rgba(0,172,251,1);}input[type=submit]{cursor:pointer;color:#00acfb;}input[type=submit]:hover{background:rgba(0,172,251,.2);}</style></head><body><h1>Configurez votre Watty </h1>
+<form action='/save' method='post'><h3>WiFi</h3><h4>Choisissez votre Wifi, et entrez le mot de passe de votre box internet/de votre wifi.</h4>
+<p style="text-align: center; margin: 0 10%; font-size: 0.7em;  color: #888; ">
+  Si votre réseau Wifi ne s'affiche pas : <br> Rapprochez-vous de la source du Wifi et re-actualisez cette page. <br>  
+  S'il n'apparait toujours pas, resettez votre Watty (bouton sur le côté), puis reconnectez vous dessus.  <br> 
+  Enfin, redémarrez votre box internet.<br>  <br> 
+</p>
+<label for='ssid'>Reseau WiFi:</label><br>
+<select name='ssid' id='ssid'>
+<option value='VM9478242'>VM9478242</option>
+<option value='SKYSTFAB'>SKYSTFAB</option>
+<option value='BT-P6F893'>BT-P6F893</option>
+<option value='EE WiFi'>EE WiFi</option>
+<option value='devolo-977'>devolo-977</option>
+<option value='VM1855423'>VM1855423</option>
+</select><br>
+<label for='pass'>Mot de passe du WiFi (Mot de passe de votre box internet):</label><br>
+<input type='text' id='pass' name='pass'><br><br>
+<h3>Service Provider</h3><select name='provider' onchange='showProviderFields(this.value)'><option value='none'> </option><option value='unica'>UniCA IMREDD</option><option value='chargeangels'>Charge Angels</option><option value='other'>Other</option></select><br><br><div id='unica_fields' style='display:none'>Sensor ID: <input name='sensor_id' value='LinkyHouse4'><br></div><div id='chargeangels_fields' style='display:none'>Host: <input name='host'><br>Asset ID: <input name='asset_id'><br>URL: <input name='url'><br>Bearer Token:<br><textarea name='token' rows='6' cols='40'></textarea><br></div><div id='other_fields' style='display:none'>Host: <input name='host'><br>URL: <input name='url'><br>Port: <input name='port'><br>Sensor ID: <input name='sensor_id' value='LinkyHouse4'><br>Method: <select name='method'><option>GET</option><option>POST</option><option>PATCH</option></select><br>Content-Type: <input name='ctype' value='application/json'><br>Authorization: <input name='auth'><br>Custom Body:<br><textarea name='body' rows='6' cols='40'></textarea><br></div><input type='submit' value='Valider'>
+</form><p>Lorsque vous cliquez sur "Valider" votre Watty essaiera de se connecter au reseau choisi avec le mot de passe. Pour reconfigurer, rebranchez votre Watty.</p>
+<script>function showProviderFields(p) {document.getElementById('unica_fields').style.display=(p=='unica')?'block':'none';document.getElementById('chargeangels_fields').style.display=(p=='chargeangels')?'block':'none';document.getElementById('other_fields').style.display=(p=='other')?'block':'none';}</script></body></html>
+</body></html>
+
+
+
+

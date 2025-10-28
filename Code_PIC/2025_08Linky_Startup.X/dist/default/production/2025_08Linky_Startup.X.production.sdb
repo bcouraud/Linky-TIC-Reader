@@ -1,0 +1,357 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 12LF1822 ]
+[d frameptr 6 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"71 C:\Users\Benoit Couraud\OneDrive - Université Nice Sophia Antipolis\projet\ChargeAngels\PIC\2025_08Linky_Startup.X\main.c
+[v _ADC_Lecture ADC_Lecture `(ui  1 e 2 0 ]
+[v i1_ADC_Lecture ADC_Lecture `(ui  1 e 2 0 ]
+"90
+[v _isr isr `II(v  1 e 1 0 ]
+"136
+[v _main main `(v  1 e 1 0 ]
+[s S550 . 1 `uc 1 IOCIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 IOCIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"375 C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic12lf1822.h
+[s S559 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 T0IE 1 0 :1:5 
+]
+[u S564 . 1 `S550 1 . 1 0 `S559 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES564  1 e 1 @11 ]
+[s S94 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+]
+"510
+[s S101 . 1 `uc 1 AN0 1 0 :1:0 
+`uc 1 AN1 1 0 :1:1 
+`uc 1 AN2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 AN3 1 0 :1:4 
+]
+[s S107 . 1 `uc 1 CPS0 1 0 :1:0 
+`uc 1 CPS1 1 0 :1:1 
+`uc 1 CPS2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 CPS3 1 0 :1:4 
+]
+[s S113 . 1 `uc 1 C1INP 1 0 :1:0 
+`uc 1 C1IN0N 1 0 :1:1 
+`uc 1 C1OUT 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 C1IN1N 1 0 :1:4 
+]
+[s S119 . 1 `uc 1 DACOUT 1 0 :1:0 
+`uc 1 SRI 1 0 :1:1 
+`uc 1 SRQ 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 SRNQ 1 0 :1:5 
+]
+[s S125 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 SCK 1 0 :1:1 
+`uc 1 T0CKI 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 T1OSO 1 0 :1:4 
+`uc 1 T1CKI 1 0 :1:5 
+]
+[s S132 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 SCL 1 0 :1:1 
+`uc 1 SDA 1 0 :1:2 
+`uc 1 nMCLR 1 0 :1:3 
+`uc 1 CLKR 1 0 :1:4 
+`uc 1 T1OSI 1 0 :1:5 
+]
+[s S139 . 1 `uc 1 MDOUT 1 0 :1:0 
+`uc 1 MDMIN 1 0 :1:1 
+`uc 1 MDCIN1 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 MDCIN2 1 0 :1:4 
+]
+[s S145 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 SDI 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 OSC2 1 0 :1:4 
+`uc 1 OSC1 1 0 :1:5 
+]
+[s S151 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 FLT0 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 CLKOUT 1 0 :1:4 
+`uc 1 CLKIN 1 0 :1:5 
+]
+[u S157 . 1 `S94 1 . 1 0 `S101 1 . 1 0 `S107 1 . 1 0 `S113 1 . 1 0 `S119 1 . 1 0 `S125 1 . 1 0 `S132 1 . 1 0 `S139 1 . 1 0 `S145 1 . 1 0 `S151 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES157  1 e 1 @12 ]
+[s S250 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSP1IF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 TMR1GIF 1 0 :1:7 
+]
+"737
+[u S259 . 1 `S250 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES259  1 e 1 @17 ]
+"842
+[v _TMR1 TMR1 `VEus  1 e 2 @22 ]
+[s S292 . 1 `uc 1 TMR1ON 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 nT1SYNC 1 0 :1:2 
+`uc 1 T1OSCEN 1 0 :1:3 
+`uc 1 T1CKPS0 1 0 :1:4 
+`uc 1 T1CKPS1 1 0 :1:5 
+`uc 1 TMR1CS0 1 0 :1:6 
+`uc 1 TMR1CS1 1 0 :1:7 
+]
+"911
+[s S301 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 T1CKPS 1 0 :2:4 
+`uc 1 TMR1CS 1 0 :2:6 
+]
+[u S305 . 1 `S292 1 . 1 0 `S301 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES305  1 e 1 @24 ]
+"1243
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+[s S488 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+]
+"1258
+[u S495 . 1 `S488 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES495  1 e 1 @140 ]
+[s S271 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSP1IE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+`uc 1 TMR1GIE 1 0 :1:7 
+]
+"1310
+[u S280 . 1 `S271 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES280  1 e 1 @145 ]
+[s S356 . 1 `uc 1 PS0 1 0 :1:0 
+`uc 1 PS1 1 0 :1:1 
+`uc 1 PS2 1 0 :1:2 
+`uc 1 PSA 1 0 :1:3 
+`uc 1 TMR0SE 1 0 :1:4 
+`uc 1 TMR0CS 1 0 :1:5 
+`uc 1 INTEDG 1 0 :1:6 
+`uc 1 nWPUEN 1 0 :1:7 
+]
+"1418
+[s S365 . 1 `uc 1 PS 1 0 :3:0 
+`uc 1 . 1 0 :1:3 
+`uc 1 T0SE 1 0 :1:4 
+`uc 1 T0CS 1 0 :1:5 
+]
+[u S370 . 1 `S356 1 . 1 0 `S365 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES370  1 e 1 @149 ]
+"1646
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+[s S323 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 IRCF0 1 0 :1:3 
+`uc 1 IRCF1 1 0 :1:4 
+`uc 1 IRCF2 1 0 :1:5 
+`uc 1 IRCF3 1 0 :1:6 
+`uc 1 SPLLEN 1 0 :1:7 
+]
+"1668
+[s S332 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 . 1 0 :1:2 
+`uc 1 IRCF 1 0 :4:3 
+]
+[u S336 . 1 `S323 1 . 1 0 `S332 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES336  1 e 1 @153 ]
+"1807
+[v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
+[s S22 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 CHS4 1 0 :1:6 
+]
+"1856
+[s S30 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 ADGO 1 0 :1:1 
+`uc 1 CHS 1 0 :5:2 
+]
+[s S34 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[s S37 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[u S40 . 1 `S22 1 . 1 0 `S30 1 . 1 0 `S34 1 . 1 0 `S37 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES40  1 e 1 @157 ]
+[s S430 . 1 `uc 1 ADPREF0 1 0 :1:0 
+`uc 1 ADPREF1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 ADCS0 1 0 :1:4 
+`uc 1 ADCS1 1 0 :1:5 
+`uc 1 ADCS2 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"1937
+[s S438 . 1 `uc 1 ADPREF 1 0 :2:0 
+`uc 1 . 1 0 :2:2 
+`uc 1 ADCS 1 0 :3:4 
+]
+[u S442 . 1 `S430 1 . 1 0 `S438 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES442  1 e 1 @158 ]
+"1982
+[v _LATA LATA `VEuc  1 e 1 @268 ]
+[s S232 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+]
+"1997
+[u S239 . 1 `S232 1 . 1 0 ]
+[v _LATAbits LATAbits `VES239  1 e 1 @268 ]
+[s S458 . 1 `uc 1 CCP1SEL 1 0 :1:0 
+`uc 1 P1BSEL 1 0 :1:1 
+`uc 1 TXCKSEL 1 0 :1:2 
+`uc 1 T1GSEL 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 SSSEL 1 0 :1:5 
+`uc 1 SDOSEL 1 0 :1:6 
+`uc 1 RXDTSEL 1 0 :1:7 
+]
+"2518
+[s S467 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 SS1SEL 1 0 :1:5 
+`uc 1 SDO1SEL 1 0 :1:6 
+]
+[u S471 . 1 `S458 1 . 1 0 `S467 1 . 1 0 ]
+[v _APFCONbits APFCONbits `VES471  1 e 1 @285 ]
+"2633
+[v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
+[s S410 . 1 `uc 1 ANSA0 1 0 :1:0 
+`uc 1 ANSA1 1 0 :1:1 
+`uc 1 ANSA2 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 ANSA4 1 0 :1:4 
+]
+"2650
+[s S416 . 1 `uc 1 ANSELA 1 0 :5:0 
+]
+[u S418 . 1 `S410 1 . 1 0 `S416 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES418  1 e 1 @396 ]
+[s S388 . 1 `uc 1 WPUA0 1 0 :1:0 
+`uc 1 WPUA1 1 0 :1:1 
+`uc 1 WPUA2 1 0 :1:2 
+`uc 1 WPUA3 1 0 :1:3 
+`uc 1 WPUA4 1 0 :1:4 
+`uc 1 WPUA5 1 0 :1:5 
+]
+"3207
+[s S395 . 1 `uc 1 WPUA 1 0 :6:0 
+]
+[u S397 . 1 `S388 1 . 1 0 `S395 1 . 1 0 ]
+[v _WPUAbits WPUAbits `VES397  1 e 1 @524 ]
+[s S505 . 1 `uc 1 IOCAP0 1 0 :1:0 
+`uc 1 IOCAP1 1 0 :1:1 
+`uc 1 IOCAP2 1 0 :1:2 
+`uc 1 IOCAP3 1 0 :1:3 
+`uc 1 IOCAP4 1 0 :1:4 
+`uc 1 IOCAP5 1 0 :1:5 
+]
+"4354
+[s S512 . 1 `uc 1 IOCAP 1 0 :6:0 
+]
+[u S514 . 1 `S505 1 . 1 0 `S512 1 . 1 0 ]
+[v _IOCAPbits IOCAPbits `VES514  1 e 1 @913 ]
+[s S527 . 1 `uc 1 IOCAN0 1 0 :1:0 
+`uc 1 IOCAN1 1 0 :1:1 
+`uc 1 IOCAN2 1 0 :1:2 
+`uc 1 IOCAN3 1 0 :1:3 
+`uc 1 IOCAN4 1 0 :1:4 
+`uc 1 IOCAN5 1 0 :1:5 
+]
+"4412
+[s S534 . 1 `uc 1 IOCAN 1 0 :6:0 
+]
+[u S536 . 1 `S527 1 . 1 0 `S534 1 . 1 0 ]
+[v _IOCANbits IOCANbits `VES536  1 e 1 @914 ]
+[s S72 . 1 `uc 1 IOCAF0 1 0 :1:0 
+`uc 1 IOCAF1 1 0 :1:1 
+`uc 1 IOCAF2 1 0 :1:2 
+`uc 1 IOCAF3 1 0 :1:3 
+`uc 1 IOCAF4 1 0 :1:4 
+`uc 1 IOCAF5 1 0 :1:5 
+]
+"4470
+[s S79 . 1 `uc 1 IOCAF 1 0 :6:0 
+]
+[u S81 . 1 `S72 1 . 1 0 `S79 1 . 1 0 ]
+[v _IOCAFbits IOCAFbits `VES81  1 e 1 @915 ]
+"5530
+[v _IOCIE IOCIE `VEb  1 e 0 @91 ]
+"5533
+[v _IOCIF IOCIF `VEb  1 e 0 @88 ]
+"41 C:\Users\Benoit Couraud\OneDrive - Université Nice Sophia Antipolis\projet\ChargeAngels\PIC\2025_08Linky_Startup.X\main.c
+[v _triggerFlag triggerFlag `VEuc  1 e 1 0 ]
+"42
+[v _t1_overflows t1_overflows `VEuc  1 e 1 0 ]
+"52
+[v _counter_ADC counter_ADC `ui  1 e 2 0 ]
+"61
+[v _threshold2 threshold2 `ui  1 e 2 0 ]
+"62
+[v _adc_char adc_char `ui  1 e 2 0 ]
+"65
+[v _currentState currentState `ui  1 e 2 0 ]
+"66
+[v _ESPState ESPState `ui  1 e 2 0 ]
+"136
+[v _main main `(v  1 e 1 0 ]
+{
+"258
+} 0
+"71
+[v _ADC_Lecture ADC_Lecture `(ui  1 e 2 0 ]
+{
+"78
+} 0
+"90
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"132
+} 0
+"71
+[v i1_ADC_Lecture ADC_Lecture `(ui  1 e 2 0 ]
+{
+"78
+} 0
